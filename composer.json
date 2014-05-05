@@ -31,7 +31,7 @@
     "extra":{
         "contao": {
             "sources":{
-                "module": "system/modules/bootstrap-buttons"
+                "module": "system/modules/bootstrap-layout"
             }
         },
         "branch-alias": {

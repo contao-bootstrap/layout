@@ -169,10 +169,12 @@ class Layout
 			}
 		}
 
+		$sections                   = implode(',', $sections);
 		$dc->activeRecord->sections = $sections;
+
 		\Database::getInstance()
 			->prepare('UPDATE tl_layout %s WHERE id=?')
-			->set(array('sections' => implode(',', $sections)))
+			->set(array('sections' => $sections))
 			->execute($dc->id);
 
 		return $value;

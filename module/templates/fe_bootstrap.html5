@@ -1,4 +1,4 @@
-<?php $helper = Netzmacht\Bootstrap\Layout\Helper\LayoutHelper::create($this); ?>
+<?php $helper = Netzmacht\Bootstrap\Layout\Helper\LayoutHelper::forTemplate($this); ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>">
 <head>

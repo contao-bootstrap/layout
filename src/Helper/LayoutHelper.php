@@ -22,7 +22,7 @@ class LayoutHelper
 	/**
 	 * @param \FrontendTemplate $template
 	 */
-	function __construct($template)
+	protected function __construct($template)
 	{
 		$this->template = $template;
 	}
@@ -43,10 +43,10 @@ class LayoutHelper
 	 * @param \FrontendTemplate $template
 	 * @return static
 	 */
-	public static function create($template)
+	public static function forTemplate(\FrontendTemplate $template)
 	{
 		/** @var LayoutHelper $helper */
-		$helper =new static($template);
+		$helper = new static($template);
 		$helper->initialize();
 
 		return $helper;

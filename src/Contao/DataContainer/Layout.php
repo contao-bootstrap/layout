@@ -63,7 +63,7 @@ class Layout
 
 		// dynamically render palette so that extensions can plug into default palette
 		if($layout->layoutType == 'bootstrap') {
-			$metaPalettes                             = &$GLOBALS['TL_DCA']['tl_layout']['metapalettes'];
+			$metaPalettes                             = & $GLOBALS['TL_DCA']['tl_layout']['metapalettes'];
 			$metaPalettes['__base__']                 = $this->getMetaPaletteOfPalette('tl_layout');
 			$metaPalettes['default extends __base__'] = Bootstrap::getConfigVar('layout.metapalette', array());
 
@@ -92,24 +92,20 @@ class Layout
 	 * @param string $name
 	 * @return array
 	 */
-	protected function getMetaPaletteOfPalette($table, $name='default')
+	protected function getMetaPaletteOfPalette($table, $name = 'default')
 	{
 		$palette     = $GLOBALS['TL_DCA'][$table]['palettes'][$name];
 		$metaPalette = array();
 		$legends     = explode(';', $palette);
 
-		foreach($legends as $legend)
-		{
+		foreach($legends as $legend) {
 			$fields = explode(',', $legend);
 
 			preg_match('/\{(.*)_legend(:hide)?\}/', $fields[0], $matches);
 
-			if(isset($matches[2]))
-			{
+			if(isset($matches[2])) {
 				$fields[0] = $matches[2];
-			}
-			else
-			{
+			} else {
 				array_shift($fields);
 			}
 

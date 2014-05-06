@@ -1,8 +1,4 @@
-<?php
-
-use Netzmacht\Bootstrap\Layout\Helper\LayoutHelper;
-$helper = LayoutHelper::create($this);
-?>
+<?php $helper = Netzmacht\Bootstrap\Layout\Helper\LayoutHelper::create($this); ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>">
 <head>
@@ -26,7 +22,7 @@ $helper = LayoutHelper::create($this);
 </head>
 <body id="top" class="{{ua::class}}<?php if ($this->class): ?> <?php echo $this->class; ?><?php endif; ?>"<?php if ($this->onload): ?> onload="<?php echo $this->onload; ?>"<?php endif; ?>>
 
-<?php echo $this->getCustomSections('top'); ?>
+<?php echo $helper->getCustomSections('top'); ?>
 
 <div id="wrapper">
 
@@ -38,7 +34,7 @@ $helper = LayoutHelper::create($this);
 		</header>
 	<?php endif; ?>
 
-	<?php echo $this->getCustomSections('before'); ?>
+	<?php echo $helper->getCustomSections('before'); ?>
 
 	<div id="container" class="container">
 	<?php if($helper->isGridActive()): ?><div class="row"><?php endif; ?>
@@ -46,7 +42,7 @@ $helper = LayoutHelper::create($this);
 			<div class="inside">
 				<?php echo $this->main; ?>
 			</div>
-			<?php echo $this->getCustomSections('main'); ?>
+			<?php echo $helper->getCustomSections('main'); ?>
 		</div>
 
 		<?php if ($this->left): ?>
@@ -67,7 +63,7 @@ $helper = LayoutHelper::create($this);
 	<?php if($helper->isGridActive()): ?></div><?php endif; ?>
 	</div>
 
-	<?php echo $this->getCustomSections('after'); ?>
+	<?php echo $helper->getCustomSections('after'); ?>
 
 	<?php if ($this->footer): ?>
 		<footer id="footer">
@@ -79,7 +75,7 @@ $helper = LayoutHelper::create($this);
 
 </div>
 
-<?php echo $this->getCustomSections('bottom'); ?>
+<?php echo $helper->getCustomSections('bottom'); ?>
 
 <?php echo $this->mootools; ?>
 

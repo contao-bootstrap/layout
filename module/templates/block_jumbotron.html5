@@ -1,0 +1,4 @@
+
+<div id="<?php echo $this->id; ?>" class="jumbotron">
+	<?php echo $this->content; ?>
+</div>

@@ -47,7 +47,7 @@
 	<?php endif; ?>
 	<?php $this->endblock(); ?>
 
-	<?php echo $this->sections('before'); ?>
+	<?php echo $helper->getCustomSections('before'); ?>
 
 	<?php $this->block('container'); ?>
 	<div id="container" class="container">

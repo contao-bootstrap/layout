@@ -1,0 +1,75 @@
+<?php $this->extend('fe_page'); ?>
+<?php $helper = Netzmacht\Bootstrap\Layout\Helper\LayoutHelper::forTemplate($this); ?>
+
+<?php $this->block('meta'); ?>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<?php $this->endblock(); ?>
+
+<?php $this->block('html5shiv'); ?>
+	<?php $this->parent(); ?>
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+<?php $this->endblock(); ?>
+
+
+<?php $this->block('header'); ?>
+<?php if ($this->header): ?>
+	<header id="header">
+		<div <?php echo $helper->getAttributes($helper::HEADER, true); ?>>
+			<?php echo $this->header; ?>
+		</div>
+	</header>
+<?php endif; ?>
+<?php $this->endblock(); ?>
+
+
+<?php $this->block('container'); ?>
+<div id="container" class="container">
+<?php if($helper->isGridActive()): ?><div class="row"><?php endif; ?>
+	<?php $this->block('main'); ?>
+	<div <?php echo $helper->getAttributes($helper::MAIN); ?>>
+		<div class="inside">
+			<?php echo $this->main; ?>
+		</div>
+		<?php echo $this->sections('main'); ?>
+	</div>
+	<?php $this->endblock(); ?>
+
+	<?php $this->block('left'); ?>
+	<?php if ($this->left): ?>
+		<aside <?php echo $helper->getAttributes($helper::LEFT); ?>>
+			<div class="inside">
+				<?php echo $this->left; ?>
+			</div>
+		</aside>
+	<?php endif; ?>
+	<?php $this->endblock(); ?>
+
+	<?php $this->block('right'); ?>
+	<?php if ($this->right): ?>
+		<aside <?php echo $helper->getAttributes($helper::RIGHT); ?>>
+			<div class="inside">
+				<?php echo $this->right; ?>
+			</div>
+		</aside>
+	<?php endif; ?>
+	<?php $this->endblock(); ?>
+
+</div>
+<?php $this->endblock(); ?>
+
+<?php echo $this->sections('after'); ?>
+
+	<?php $this->block('footer'); ?>
+	<?php if ($this->footer): ?>
+		<footer id="footer">
+			<div <?php echo $helper->getAttributes($helper::FOOTER, true); ?>>
+				<?php echo $this->footer; ?>
+			</div>
+		</footer>
+	<?php endif; ?>
+	<?php $this->endblock(); ?>
+
+</div>

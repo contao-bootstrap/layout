@@ -45,3 +45,31 @@ $GLOBALS['BOOTSTRAP']['layout']['metasubselectpalettes'] = array(
 		'3cl'  => array('bootstrap_leftClass', 'bootstrap_mainClass', 'bootstrap_rightClass'),
 	),
 );
+
+
+//
+$GLOBALS['BOOTSTRAP']['layout']['rewrite-css-classes']['invisible']   = 'sr-only';
+$GLOBALS['BOOTSTRAP']['layout']['rewrite-css-classes']['float_left']  = 'pull-left';
+$GLOBALS['BOOTSTRAP']['layout']['rewrite-css-classes']['float_right'] = 'pull-right';
+
+
+$GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceImageClasses'] = array
+(
+	'type'      => 'callback',
+	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceImageClasses'),
+	'templates' => array
+	(
+		'ce_*',
+	),
+);
+
+
+$GLOBALS['BOOTSTRAP']['templates']['modifiers']['parsers']['callback.replaceClasses'] = array
+(
+	'type'      => 'callback',
+	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceClasses'),
+	'templates' => array
+	(
+		'fe_*',
+	),
+);

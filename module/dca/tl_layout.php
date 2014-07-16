@@ -160,7 +160,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_importJavaScripts'] = array
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_javaScripts'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bootstrap_javaScripts'],
-	'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bootstrap_javaScripts'],
 	'exclude'                 => true,
 	'inputType'               => 'multiColumnWizard',
 	'options'                 => $GLOBALS['BOOTSTRAP']['assets']['js'],
@@ -210,10 +209,10 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['viewport'],
 	'exclude'                 => true,
-	'default'                 => \Netzmacht\Bootstrap\Core\Bootstrap::getConfigVar('layout.viewport'),
+	'default'                 => \Netzmacht\Bootstrap\Core\Bootstrap::getConfigVar('layout.viewport', ''),
 	'inputType'               => 'text',
 	'eval'                    => array('tl_class' => 'w50', 'decodeEntities' => true),
-	'sql'                     => "varchar(128) NOT NULL default ''",
+	'sql'                     => "varchar(255) NOT NULL default ''",
 );
 
 

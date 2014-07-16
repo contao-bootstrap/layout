@@ -55,11 +55,7 @@ class Layout
 			return;
 		}
 
-		// we cannot use the model because of contao/core #6179, fixed in 3.1.3
-		//$layout = \LayoutModel::findByPk(\Input::get('id'));
-		$layout = \Database::getInstance()
-			->prepare('SELECT * FROM tl_layout WHERE id=?')
-			->execute(\Input::get('id'));
+		$layout = \LayoutModel::findByPk(\Input::get('id'));
 
 		// dynamically render palette so that extensions can plug into default palette
 		if($layout->layoutType == 'bootstrap') {

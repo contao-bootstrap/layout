@@ -133,15 +133,6 @@ class LayoutHelper
 			}
 		}
 
-		// fallback for older Contao versions
-		if(version_compare(VERSION, '3.3', '<')) {
-			$blockTemplate          = new \FrontendTemplate($template);
-			$blockTemplate->id      = $id;
-			$blockTemplate->content = $this->template->sections[$id];
-
-			return $blockTemplate->parse();
-		}
-
 		return $this->template->section($id, $template);
 	}
 

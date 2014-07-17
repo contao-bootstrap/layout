@@ -1,10 +1,6 @@
 <?php
 
 /**
- * Contao Open Source CMS
- *
- * Copyright (C) 2005-2013 Leo Feyer
- *
  * @package   netzmacht-bootstrap
  * @author    netzmacht creative David Molineus
  * @license   MPL/2.0

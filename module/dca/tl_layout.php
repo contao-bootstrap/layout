@@ -1,27 +1,11 @@
 <?php
 
 /**
- * Contao Open Source CMS
- *
- * Copyright (C) 2005-2013 Leo Feyer
- *
  * @package   netzmacht-bootstrap
  * @author    netzmacht creative David Molineus
  * @license   MPL/2.0
  * @copyright 2013 netzmacht creative David Molineus
  */
-
-
-/**
- * config
- */
-$GLOBALS['TL_DCA']['tl_layout']['config']['palettes_callback'][]   = array('Netzmacht\Bootstrap\Layout\Contao\DataContainer\Layout', 'generatePalette');
-
-
-/**
- * subpalettes
- */
-
 
 /**
  * fields

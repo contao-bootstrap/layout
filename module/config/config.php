@@ -20,7 +20,7 @@ $GLOBALS['BOOTSTRAP']['layout']['metapalette']['-sections'][] = 'sections';
 $GLOBALS['BOOTSTRAP']['layout']['metapalette']['-sections'][] = 'sPosition';
 $GLOBALS['BOOTSTRAP']['layout']['metapalette']['+sections'][] = 'bootstrap_sections';
 $GLOBALS['BOOTSTRAP']['layout']['metapalette']['-style'][]    = 'framework';
-$GLOBALS['BOOTSTRAP']['layout']['metapalette']['-static'][]    = 'static';
+$GLOBALS['BOOTSTRAP']['layout']['metapalette']['-static'][]   = 'static';
 
 if(version_compare(VERSION, '3.3', '<')) {
 	$GLOBALS['BOOTSTRAP']['layout']['metapalette']['+expert'][] = 'viewport after cssClass';

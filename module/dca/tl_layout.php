@@ -36,18 +36,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['eval'] = array('templateP
 // do not import layout builder by default to prevent side effects
 $GLOBALS['TL_DCA']['tl_layout']['fields']['framework']['default'] = array();
 
-$GLOBALS['TL_DCA']['tl_layout']['fields']['layoutType'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['layoutType'],
-	'default'                 => 'default',
-	'exclude'                 => true,
-	'inputType'               => 'select',
-	'options'                 => array('default', 'bootstrap'),
-	'reference'               => &$GLOBALS['TL_LANG']['tl_layout']['layoutTypes'],
-	'eval'                    => array('tl_class' => 'w50', 'submitOnChange' => true, 'helpwizard'=>true,),
-	'sql'                     => "varchar(150) NOT NULL default ''"
-);
-
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_headerClass'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bootstrap_headerClass'],

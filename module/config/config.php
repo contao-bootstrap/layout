@@ -64,10 +64,10 @@ $GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceImageClasses'] 
 );
 
 
-$GLOBALS['BOOTSTRAP']['templates']['modifiers']['parsers']['callback.replaceClasses'] = array
+$GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses'] = array
 (
 	'type'      => 'callback',
-	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceClasses'),
+	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceCssClasses'),
 	'templates' => array
 	(
 		'fe_*',

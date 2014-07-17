@@ -1,13 +1,5 @@
 <?php
 
-/**
- * legends
- */
-$GLOBALS['TL_LANG']['tl_layout']['layoutTypes']['bootstrap'][0] = 'Bootstrap';
-$GLOBALS['TL_LANG']['tl_layout']['layoutTypes']['bootstrap'][1] = 'Layout basiert auf Contao-Bootstrap';
-$GLOBALS['TL_LANG']['tl_layout']['layoutTypes']['default'][0]   = 'Contao Standard';
-$GLOBALS['TL_LANG']['tl_layout']['layoutTypes']['default'][1]   = 'Gewöhnliches Layout von Contao';
-
 
 /**
  * fields
@@ -22,8 +14,6 @@ $GLOBALS['TL_LANG']['tl_layout']['bootstrap_leftClass'][0]         = 'CSS-Grid K
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_leftClass'][1]         = 'Geben Sie die CSS-Grid Klassen der linken Spalte an. Bedenken Sie, dass das Holygrail-Layout von Contao verwendet wird, Sie dadurch womöglich die linke und Hauptspalte mit den pull-/push- Klassen verschieben müssen. ';
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_rightClass'][0]        = 'CSS-Grid Klassen der rechten Spalte';
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_rightClass'][1]        = 'Geben Sie die CSS-Grid Klassen der rechten Spalte an.';
-$GLOBALS['TL_LANG']['tl_layout']['layoutType'][0]                  = 'Typ des Layouts';
-$GLOBALS['TL_LANG']['tl_layout']['layoutType'][1]                  = 'Bitte wählen Sie den Typ des Layouts';
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_importStylesheets'][0] = 'Bootstrap Stylesheets importieren';
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_importStylesheets'][1] = 'Von Contao-Bootstrap zur Verfügung gestellte Stylesheets importieren.';
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_stylesheets'][0]       = 'Bootstrap Stylesheets';

@@ -56,6 +56,14 @@ $GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceImageClasses'] 
 	'templates' => 'ce_*',
 );
 
+// replace image css classes
+$GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceTableClasses'] = array
+(
+	'type'      => 'callback',
+	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceTableClasses'),
+	'templates' => 'ce_table',
+);
+
 // replace css classes
 $GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses'] = array
 (

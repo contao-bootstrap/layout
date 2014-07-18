@@ -61,7 +61,7 @@ $GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceTableClasses'] 
 (
 	'type'      => 'callback',
 	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceTableClasses'),
-	'templates' => 'ce_table',
+	'templates' => 'ce_table*',
 );
 
 // replace css classes

@@ -2,6 +2,7 @@
 
 namespace Netzmacht\Bootstrap\Layout\Helper;
 
+use Netzmacht\Bootstrap\Core\Bootstrap;
 use Netzmacht\Html\Attributes;
 
 class LayoutHelper
@@ -33,9 +34,7 @@ class LayoutHelper
 	 */
 	public static function getPageLayout()
 	{
-		global $container;
-
-		return $container['bootstrap.page-layout'];
+		return Bootstrap::getPageLayout();
 	}
 
 

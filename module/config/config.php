@@ -49,9 +49,6 @@ $GLOBALS['BOOTSTRAP']['layout']['replace-css-classes']['float_left']  = 'pull-le
 $GLOBALS['BOOTSTRAP']['layout']['replace-css-classes']['float_right'] = 'pull-right';
 
 // replace css classes
-$GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses'] = array
-(
-	'type'      => 'callback',
-	'callback'  => array('Netzmacht\Bootstrap\Layout\Templates\Modifier', 'replaceCssClasses'),
-	'templates' => 'fe_*',
-);
+$GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses']['type']        = 'callback';
+$GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses']['callback']    = array('Netzmacht\Bootstrap\Layout\Templates\Modifier', 'replaceCssClasses');
+$GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses']['templates'][] = 'fe_*';

@@ -44,30 +44,14 @@ $GLOBALS['BOOTSTRAP']['layout']['metasubselectpalettes'] = array(
 
 
 // rewrite css classes
-$GLOBALS['BOOTSTRAP']['layout']['rewrite-css-classes']['invisible']   = 'sr-only';
-$GLOBALS['BOOTSTRAP']['layout']['rewrite-css-classes']['float_left']  = 'pull-left';
-$GLOBALS['BOOTSTRAP']['layout']['rewrite-css-classes']['float_right'] = 'pull-right';
-
-// replace image css classes
-$GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceImageClasses'] = array
-(
-	'type'      => 'callback',
-	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceImageClasses'),
-	'templates' => 'ce_*',
-);
-
-// replace image css classes
-$GLOBALS['BOOTSTRAP']['templates']['modifiers']['callback.replaceTableClasses'] = array
-(
-	'type'      => 'callback',
-	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceTableClasses'),
-	'templates' => 'ce_table*',
-);
+$GLOBALS['BOOTSTRAP']['layout']['replace-css-classes']['invisible']   = 'sr-only';
+$GLOBALS['BOOTSTRAP']['layout']['replace-css-classes']['float_left']  = 'pull-left';
+$GLOBALS['BOOTSTRAP']['layout']['replace-css-classes']['float_right'] = 'pull-right';
 
 // replace css classes
 $GLOBALS['BOOTSTRAP']['templates']['parsers']['callback.replaceClasses'] = array
 (
 	'type'      => 'callback',
-	'callback'  => array('Netzmacht\Bootstrap\Layout\Contao\Hooks', 'replaceCssClasses'),
+	'callback'  => array('Netzmacht\Bootstrap\Layout\Templates\Modifier', 'replaceCssClasses'),
 	'templates' => 'fe_*',
 );

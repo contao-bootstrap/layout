@@ -13,11 +13,30 @@ class LayoutHelper
 	const HEADER = 'header';
 	const FOOTER = 'footer';
 
-
 	/**
 	 * @var \FrontendTemplate
 	 */
 	protected $template;
+
+	/**
+	 * @var string
+	 */
+	protected $mainClass;
+
+	/**
+	 * @var string
+	 */
+	protected $leftClass;
+
+	/**
+	 * @var string
+	 */
+	protected $rightClass;
+
+	/**
+	 * @var bool
+	 */
+	protected $useGrid;
 
 
 	/**
@@ -80,11 +99,18 @@ class LayoutHelper
 			$attributes->setId($id);
 		}
 
-		if(static::isGridActive()) {
+		if($id == static::FOOTER || $id == static::HEADER) {
 			$key = sprintf('bootstrap_%sClass', $id);
 
 			if($layout->$key) {
 				$attributes->addClass($layout->$key);
+			}
+		}
+		elseif(static::isGridActive()) {
+			$key = sprintf('%sClass', $id);
+
+			if($this->$key) {
+				$attributes->addClass($this->$key);
 			}
 		}
 
@@ -98,7 +124,7 @@ class LayoutHelper
 	{
 		$layout = static::getPageLayout();
 
-		return $layout->cols != '';
+		return $layout->cols != '1cl' && $layout->cols != '';
 	}
 
 
@@ -186,10 +212,33 @@ class LayoutHelper
 		$layout = static::getPageLayout();
 
 		// only apply viewport if not contao 3.3 is used
-		// TODO: Test it in 3.3
-		if($layout->viewport && version_compare(VERSION, '3.3', '<')) {
+		if($layout->viewport && !$this->template->viewport && version_compare(VERSION, '3.3', '<')) {
 			$this->template->viewport = sprintf('<meta name="viewport" content="%s">', $layout->viewport);
 		}
+
+		switch($layout->cols) {
+			case '2cll':
+				$this->leftClass           = $layout->bootstrap_leftClass;
+				$this->mainClass           = $layout->bootstrap_mainClass;
+				break;
+
+			case '2clr':
+				$this->rightClass          = $layout->bootstrap_rightClass;
+				$this->mainClass           = $layout->bootstrap_mainClass;
+				break;
+
+			case '3cl':
+				$this->leftClass           = $layout->bootstrap_leftClass;
+				$this->rightClass          = $layout->bootstrap_rightClass;
+				$this->mainClass           = $layout->bootstrap_mainClass;
+				break;
+
+			default:
+				$this->useGrid = false;
+				return;
+		}
+
+		$this->useGrid = true;
 	}
 
 

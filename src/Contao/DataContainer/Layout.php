@@ -24,7 +24,7 @@ class Layout
 	 */
 	public function getSectionTemplates()
 	{
-		return \Controller::getTemplateGroup('block_');
+		return \Controller::getTemplateGroup('block_section');
 	}
 
 

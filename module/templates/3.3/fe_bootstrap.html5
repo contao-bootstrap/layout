@@ -23,7 +23,7 @@
 
 	<?php $this->block('html5shiv'); ?>
 	<!--[if lt IE 9]>
-	<script src="<?php echo TL_ASSETS_URL; ?>assets/html5shiv/<?php echo $GLOBALS['TL_ASSETS']['HTML5SHIV']; ?>/html5shiv-printshiv.js"></script><![endif]-->
+	<script src="<?php echo TL_ASSETS_URL; ?>assets/html5shiv/<?php echo $GLOBALS['TL_ASSETS']['HTML5SHIV']; ?>/html5shiv-printshiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<?php $this->endblock(); ?>
@@ -90,7 +90,7 @@
 
 	<?php $this->block('footer'); ?>
 	<?php if ($this->footer): ?>
-		<<footer id="footer">
+		<footer id="footer">
 			<div <?php echo $helper->getAttributes($helper::FOOTER, true); ?>>
 				<?php echo $this->footer; ?>
 			</div>

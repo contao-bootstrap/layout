@@ -36,7 +36,7 @@ $config = array(
 
 	'templates' => array(
 		'parsers' => array(
-			'callback.replaceClasses' => array(
+			'callback_replace-classes' => array(
 				'type'      => 'callback',
 				'callback'  => array('Netzmacht\Bootstrap\Layout\Templates\Modifier', 'replaceCssClasses'),
 				'templates' => array('fe_*'),

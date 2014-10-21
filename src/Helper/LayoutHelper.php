@@ -7,275 +7,262 @@ use Netzmacht\Html\Attributes;
 
 class LayoutHelper
 {
-	const LEFT   = 'left';
-	const RIGHT  = 'right';
-	const MAIN   = 'main';
-	const HEADER = 'header';
-	const FOOTER = 'footer';
+    const LEFT   = 'left';
+    const RIGHT  = 'right';
+    const MAIN   = 'main';
+    const HEADER = 'header';
+    const FOOTER = 'footer';
 
-	/**
-	 * @var \FrontendTemplate
-	 */
-	protected $template;
+    /**
+     * @var \FrontendTemplate
+     */
+    protected $template;
 
-	/**
-	 * @var string
-	 */
-	protected $mainClass;
+    /**
+     * @var string
+     */
+    protected $mainClass;
 
-	/**
-	 * @var string
-	 */
-	protected $leftClass;
+    /**
+     * @var string
+     */
+    protected $leftClass;
 
-	/**
-	 * @var string
-	 */
-	protected $rightClass;
+    /**
+     * @var string
+     */
+    protected $rightClass;
 
-	/**
-	 * @var bool
-	 */
-	protected $useGrid;
+    /**
+     * @var bool
+     */
+    protected $useGrid;
 
+    /**
+     * @param \FrontendTemplate $template
+     */
+    protected function __construct($template)
+    {
+        $this->template = $template;
+    }
 
-	/**
-	 * @param \FrontendTemplate $template
-	 */
-	protected function __construct($template)
-	{
-		$this->template = $template;
-	}
+    /**
+     * @return \LayoutModel|null
+     */
+    public static function getPageLayout()
+    {
+        return Bootstrap::getPageLayout();
+    }
 
+    /**
+     * @param \FrontendTemplate $template
+     * @return static
+     */
+    public static function forTemplate(\FrontendTemplate $template)
+    {
+        /** @var LayoutHelper $helper */
+        $helper = new static($template);
+        $helper->initialize();
 
-	/**
-	 * @return \LayoutModel|null
-	 */
-	public static function getPageLayout()
-	{
-		return Bootstrap::getPageLayout();
-	}
+        return $helper;
+    }
 
+    /**
+     * @return bool
+     */
+    public static function isBootstrapLayout()
+    {
+        $layout = static::getPageLayout();
 
-	/**
-	 * @param \FrontendTemplate $template
-	 * @return static
-	 */
-	public static function forTemplate(\FrontendTemplate $template)
-	{
-		/** @var LayoutHelper $helper */
-		$helper = new static($template);
-		$helper->initialize();
+        return ($layout && $layout->layoutType == 'bootstrap');
+    }
 
-		return $helper;
-	}
+    /**
+     * @param $id
+     * @param bool $inside
+     * @return \Netzmacht\Html\Attributes
+     */
+    public function getAttributes($id, $inside=false)
+    {
+        $layout     = static::getPageLayout();
+        $attributes = new Attributes();
 
+        if ($inside) {
+            $attributes->addClass('inside');
+        } else {
+            $attributes->setId($id);
+        }
 
-	/**
-	 * @return bool
-	 */
-	public static function isBootstrapLayout()
-	{
-		$layout = static::getPageLayout();
+        if ($id == static::FOOTER || $id == static::HEADER) {
+            $key = sprintf('bootstrap_%sClass', $id);
 
-		return $layout && $layout->layoutType == 'bootstrap';
-	}
+            if ($layout->$key) {
+                $attributes->addClass($layout->$key);
+            }
+        } elseif (static::isGridActive()) {
+            $key = sprintf('%sClass', $id);
 
+            if ($this->$key) {
+                $attributes->addClass($this->$key);
+            }
+        }
 
-	/**
-	 * @param $id
-	 * @param bool $inside
-	 * @return \Netzmacht\Html\Attributes
-	 */
-	public function getAttributes($id, $inside=false)
-	{
-		$layout     = static::getPageLayout();
-		$attributes = new Attributes();
+        return $attributes;
+    }
 
-		if($inside) {
-			$attributes->addClass('inside');
-		}
-		else {
-			$attributes->setId($id);
-		}
+    /**
+     * @return bool
+     */
+    public function isGridActive()
+    {
+        $layout = static::getPageLayout();
 
-		if($id == static::FOOTER || $id == static::HEADER) {
-			$key = sprintf('bootstrap_%sClass', $id);
+        return $layout->cols != '1cl' && $layout->cols != '';
+    }
 
-			if($layout->$key) {
-				$attributes->addClass($layout->$key);
-			}
-		}
-		elseif(static::isGridActive()) {
-			$key = sprintf('%sClass', $id);
+    /**
+     * @param $id
+     * @param string $template
+     * @param bool $renderEmpty
+     * @return string
+     */
+    public function getCustomSection($id, $template=null, $renderEmpty=false)
+    {
+        // section specification can be passed instead of the id
+        if (is_array($id)) {
+            $sectionSpec = $id;
+            $id          = $sectionSpec['id'];
+        } else {
+            $sectionSpec = $this->getSectionSpecification($id);
+        }
 
-			if($this->$key) {
-				$attributes->addClass($this->$key);
-			}
-		}
+        if (!$renderEmpty && (!isset($this->template->sections[$id]) || ! $this->template->sections[$id])) {
+            return '';
+        }
 
-		return $attributes;
-	}
+        if ($template === null) {
+            if ($sectionSpec && $sectionSpec['template'] != '') {
+                $template = $sectionSpec['template'];
+            } else {
+                $template = 'block_section';
+            }
+        }
 
-	/**
-	 * @return bool
-	 */
-	public function isGridActive()
-	{
-		$layout = static::getPageLayout();
+        // fallback for older Contao versions
+        if (version_compare(VERSION, '3.3', '<')) {
+            $blockTemplate          = new \FrontendTemplate($template);
+            $blockTemplate->id      = $id;
+            $blockTemplate->content = $this->template->sections[$id];
 
-		return $layout->cols != '1cl' && $layout->cols != '';
-	}
+            return $blockTemplate->parse();
+        }
 
+        return $this->template->section($id, $template);
+    }
 
-	/**
-	 * @param $id
-	 * @param string $template
-	 * @param bool $renderEmpty
-	 * @return string
-	 */
-	public function getCustomSection($id, $template=null, $renderEmpty=false)
-	{
-		// section specification can be passed instead of the id
-		if(is_array($id)) {
-			$sectionSpec = $id;
-			$id          = $sectionSpec['id'];
-		}
-		else {
-			$sectionSpec = $this->getSectionSpecification($id);
-		}
+    /**
+     * @param $position
+     * @param string $template
+     * @return string
+     */
+    public function getCustomSections($position, $template='block_sections')
+    {
+        $specifications = $this->getSectionSpecifications($position);
+        $sections       = array();
 
-		if(!$renderEmpty && (!isset($this->template->sections[$id]) || ! $this->template->sections[$id])) {
-			return '';
-		}
+        foreach ($specifications as $section) {
+            $buffer = $this->getCustomSection($section);
 
-		if($template === null) {
-			if($sectionSpec && $sectionSpec['template'] != '') {
-				$template = $sectionSpec['template'];
-			}
-			else {
-				$template = 'block_section';
-			}
-		}
+            if ($buffer) {
+                $sections[$section['id']] = $buffer;
+            }
+        }
 
-		// fallback for older Contao versions
-		if(version_compare(VERSION, '3.3', '<')) {
-			$blockTemplate          = new \FrontendTemplate($template);
-			$blockTemplate->id      = $id;
-			$blockTemplate->content = $this->template->sections[$id];
+        if (!$sections) {
+            return '';
+        }
 
-			return $blockTemplate->parse();
-		}
+        $template = new \FrontendTemplate($template);
+        $template->sections = $sections;
 
-		return $this->template->section($id, $template);
-	}
+        return $template->parse();
+    }
 
+    /**
+     * Initialize the system
+     */
+    private function initialize()
+    {
+        if (!$this->isBootstrapLayout()) {
+            return;
+        }
 
-	/**
-	 * @param $position
-	 * @param string $template
-	 * @return string
-	 */
-	public function getCustomSections($position, $template='block_sections')
-	{
-		$specifications = $this->getSectionSpecifications($position);
-		$sections       = array();
+        $layout = static::getPageLayout();
 
-		foreach($specifications as $section) {
-			$buffer = $this->getCustomSection($section);
+        // only apply viewport if not contao 3.3 is used
+        if ($layout->viewport && !$this->template->viewport && version_compare(VERSION, '3.3', '<')) {
+            $this->template->viewport = sprintf('<meta name="viewport" content="%s">', $layout->viewport);
+        }
 
-			if($buffer) {
-				$sections[$section['id']] = $buffer;
-			}
-		}
+        switch ($layout->cols) {
+            case '2cll':
+                $this->leftClass           = $layout->bootstrap_leftClass;
+                $this->mainClass           = $layout->bootstrap_mainClass;
+                break;
 
-		if(!$sections) {
-			return '';
-		}
+            case '2clr':
+                $this->rightClass          = $layout->bootstrap_rightClass;
+                $this->mainClass           = $layout->bootstrap_mainClass;
+                break;
 
-		$template = new \FrontendTemplate($template);
-		$template->sections = $sections;
+            case '3cl':
+                $this->leftClass           = $layout->bootstrap_leftClass;
+                $this->rightClass          = $layout->bootstrap_rightClass;
+                $this->mainClass           = $layout->bootstrap_mainClass;
+                break;
 
-		return $template->parse();
-	}
+            default:
+                $this->useGrid = false;
 
+                return;
+        }
 
-	/**
-	 * Initialize the system
-	 */
-	private function initialize()
-	{
-		if(!$this->isBootstrapLayout()) {
-			return;
-		}
+        $this->useGrid = true;
+    }
 
-		$layout = static::getPageLayout();
+    /**
+     * @param $id
+     * @return bool
+     */
+    private function getSectionSpecification($id)
+    {
+        $sections = $this->getSectionSpecifications();
 
-		// only apply viewport if not contao 3.3 is used
-		if($layout->viewport && !$this->template->viewport && version_compare(VERSION, '3.3', '<')) {
-			$this->template->viewport = sprintf('<meta name="viewport" content="%s">', $layout->viewport);
-		}
+        foreach ($sections as $section) {
+            if ($section['id'] == $id) {
+                return $section;
+            }
+        }
 
-		switch($layout->cols) {
-			case '2cll':
-				$this->leftClass           = $layout->bootstrap_leftClass;
-				$this->mainClass           = $layout->bootstrap_mainClass;
-				break;
+        return false;
+    }
 
-			case '2clr':
-				$this->rightClass          = $layout->bootstrap_rightClass;
-				$this->mainClass           = $layout->bootstrap_mainClass;
-				break;
+    /**
+     * @param string|null $position
+     * @return mixed
+     */
+    private function getSectionSpecifications($position=null)
+    {
+        $layout   = static::getPageLayout();
+        $sections = deserialize($layout->bootstrap_sections, true);
 
-			case '3cl':
-				$this->leftClass           = $layout->bootstrap_leftClass;
-				$this->rightClass          = $layout->bootstrap_rightClass;
-				$this->mainClass           = $layout->bootstrap_mainClass;
-				break;
+        if ($position !== null) {
+            $sections = array_filter($sections, function ($section) use ($position) {
+                return $section['position'] == $position;
+            });
+        }
 
-			default:
-				$this->useGrid = false;
-				return;
-		}
+        return $sections;
+    }
 
-		$this->useGrid = true;
-	}
-
-
-	/**
-	 * @param $id
-	 * @return bool
-	 */
-	private function getSectionSpecification($id)
-	{
-		$sections = $this->getSectionSpecifications();
-
-		foreach($sections as $section) {
-			if($section['id'] == $id) {
-				return $section;
-			}
-		}
-
-		return false;
-	}
-
-
-	/**
-	 * @param string|null $position
-	 * @return mixed
-	 */
-	private function getSectionSpecifications($position=null)
-	{
-		$layout   = static::getPageLayout();
-		$sections = deserialize($layout->bootstrap_sections, true);
-
-		if($position !== null) {
-			$sections = array_filter($sections, function($section) use($position) {
-				return $section['position'] == $position;
-			});
-		}
-
-		return $sections;
-	}
-
-} 
+}

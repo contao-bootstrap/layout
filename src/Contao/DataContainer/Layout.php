@@ -18,35 +18,34 @@ use Netzmacht\Bootstrap\Core\Bootstrap;
 class Layout
 {
 
-	/**
-	 * Get all templates for the sections block
-	 * @return array
-	 */
-	public function getSectionTemplates()
-	{
-		return \Controller::getTemplateGroup('block_section');
-	}
+    /**
+     * Get all templates for the sections block
+     * @return array
+     */
+    public function getSectionTemplates()
+    {
+        return \Controller::getTemplateGroup('block_section');
+    }
 
+    /**
+     * Load section values as language var
+     *
+     * @param $value
+     * @param $dc
+     * @return mixed
+     */
+    public function loadSectionLabels($value, $dc)
+    {
+        $sections = deserialize($dc->activeRecord->bootstrap_sections, true);
 
-	/**
-	 * Load section values as language var
-	 *
-	 * @param $value
-	 * @param $dc
-	 * @return mixed
-	 */
-	public function loadSectionLabels($value, $dc)
-	{
-		$sections = deserialize($dc->activeRecord->bootstrap_sections, true);
+        foreach ($sections as $section) {
+            if (!isset($GLOBALS['TL_LANG']['tl_article'][$section['id']])) {
+                $GLOBALS['TL_LANG']['tl_article'][$section['id']] = $section['label'] ?: $section['id'];
+            }
+        }
 
-		foreach($sections as $section) {
-			if(!isset($GLOBALS['TL_LANG']['tl_article'][$section['id']])) {
-				$GLOBALS['TL_LANG']['tl_article'][$section['id']] = $section['label'] ?: $section['id'];
-			}
-		}
-
-		return $value;
-	}
+        return $value;
+    }
 
     /**
      * @param $value
@@ -72,34 +71,33 @@ class Layout
         return $sections;
     }
 
+    /**
+     * Store sections in legacy section column
+     *
+     * @param $value
+     * @param $dc
+     * @return mixed
+     */
+    public function updateLegacySections($value, $dc)
+    {
+        $sections = array();
+        $value    = deserialize($value, true);
 
-	/**
-	 * Store sections in legacy section column
-	 *
-	 * @param $value
-	 * @param $dc
-	 * @return mixed
-	 */
-	public function updateLegacySections($value, $dc)
-	{
-		$sections = array();
-		$value    = deserialize($value, true);
+        foreach ($value as $section) {
+            if ($section['id']) {
+                $sections[] = $section['id'];
+            }
+        }
 
-		foreach($value as $section) {
-			if($section['id']) {
-				$sections[] = $section['id'];
-			}
-		}
+        $sections                   = implode(',', $sections);
+        $dc->activeRecord->sections = $sections;
 
-		$sections                   = implode(',', $sections);
-		$dc->activeRecord->sections = $sections;
+        \Database::getInstance()
+            ->prepare('UPDATE tl_layout %s WHERE id=?')
+            ->set(array('sections' => $sections))
+            ->execute($dc->id);
 
-		\Database::getInstance()
-			->prepare('UPDATE tl_layout %s WHERE id=?')
-			->set(array('sections' => $sections))
-			->execute($dc->id);
-
-		return $value;
-	}
+        return $value;
+    }
 
 }

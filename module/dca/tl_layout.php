@@ -82,6 +82,7 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_sections'] = array
 	'exclude'                 => true,
 	'inputType'               => 'multiColumnWizard',
 	'save_callback'           => array(
+        array('Netzmacht\Bootstrap\Layout\Contao\DataContainer\Layout', 'autoCompleteSectionIds'),
 		array('Netzmacht\Bootstrap\Layout\Contao\DataContainer\Layout', 'updateLegacySections'),
 	),
 	'eval'                    => array(

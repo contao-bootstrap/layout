@@ -48,6 +48,30 @@ class Layout
 		return $value;
 	}
 
+    /**
+     * @param $value
+     * @return array
+     */
+    public function autoCompleteSectionIds($value)
+    {
+        $sections = array();
+        $value    = deserialize($value, true);
+
+        foreach ($value as $section) {
+            if (!$section['id']) {
+                if (!$section['label']) {
+                    continue;
+                }
+
+                $section['id'] = standardize($section['label']);
+            }
+
+            $sections[] = $section;
+        }
+
+        return $sections;
+    }
+
 
 	/**
 	 * Store sections in legacy section column

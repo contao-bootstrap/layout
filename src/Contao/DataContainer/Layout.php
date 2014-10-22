@@ -9,7 +9,6 @@
 
 namespace Netzmacht\Bootstrap\Layout\Contao\DataContainer;
 
-use Netzmacht\Bootstrap\Core\Bootstrap;
 
 /**
  * Class Layout
@@ -17,7 +16,6 @@ use Netzmacht\Bootstrap\Core\Bootstrap;
  */
 class Layout
 {
-
     /**
      * Get all templates for the sections block
      * @return array
@@ -25,6 +23,24 @@ class Layout
     public function getSectionTemplates()
     {
         return \Controller::getTemplateGroup('block_section');
+    }
+
+    /**
+     * @param $value
+     * @param \DataContainer $dataContainer
+     * @return mixed
+     */
+    public function disableFramework($value, \DataContainer $dataContainer)
+    {
+        if ($value == 'bootstrap' && $dataContainer->activeRecord->framework) {
+            $dataContainer->activeRecord->framework = null;
+            \Database::getInstance()
+                ->prepare('UPDATE tl_layout %s WHERE id=?')
+                ->set(array('framework' => null))
+                ->execute($dataContainer->id);
+        }
+
+        return $value;
     }
 
     /**
@@ -99,5 +115,4 @@ class Layout
 
         return $value;
     }
-
 }

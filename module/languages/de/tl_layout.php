@@ -47,6 +47,4 @@ $GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_position'][1] = 'Position d
 $GLOBALS['TL_LANG']['tl_layout']['safeTpl']   = 'Im Theme verfügbar';
 $GLOBALS['TL_LANG']['tl_layout']['unsafeTpl'] = 'In anderen Themes';
 
-if(!isset($GLOBALS['TL_LANG']['tl_layout']['custom'])) {
-	$GLOBALS['TL_LANG']['tl_layout']['custom'] = 'Manuelle Ausgabe';
-}
+$GLOBALS['TL_LANG']['tl_layout']['custom'] = 'Manuelle Ausgabe';

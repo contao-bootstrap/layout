@@ -37,6 +37,12 @@
         "contao": {
             "sources":{
                 "module": "system/modules/bootstrap-layout"
+            },
+            "transifex": {
+                "project": "contao-bootstrap",
+                "prefix": "layout-",
+                "languages_cto": "module/languages",
+                "languages_tx": ".tx"
             }
         },
         "branch-alias": {

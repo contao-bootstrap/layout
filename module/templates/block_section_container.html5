@@ -1,7 +1,4 @@
+
 <div class="container">
-
-<div id="<?php echo $this->id; ?>">
   <?php echo $this->content; ?>
-</div>
-
 </div>

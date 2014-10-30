@@ -1,5 +1,5 @@
 
-<div id="<?php echo $this->id; ?>" class="jumbotron">
+<div class="jumbotron">
 	<div class="container">
 		<?php echo $this->content; ?>
 	</div>

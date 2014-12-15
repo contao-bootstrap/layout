@@ -70,6 +70,8 @@ class LayoutHelper
     {
         $this->template         = $template;
         $this->flexibleSections = new FlexibleSections($template);
+
+        $this->initialize();
     }
 
     /**
@@ -91,11 +93,7 @@ class LayoutHelper
      */
     public static function forTemplate(\FrontendTemplate $template)
     {
-        /** @var LayoutHelper $helper */
-        $helper = new static($template);
-        $helper->initialize();
-
-        return $helper;
+        return new static($template);
     }
 
     /**
@@ -113,12 +111,12 @@ class LayoutHelper
     /**
      * Get attributes for a specific section.
      *
-     * @param string $sectionId The section id
+     * @param string $sectionId The section id.
      * @param bool   $inside    If true the inside class is added. Otherwhise $sectionId is set as id attribute.
      *
      * @return Attributes
      */
-    public function getAttributes($sectionId, $inside=false)
+    public function getAttributes($sectionId, $inside = false)
     {
         $layout     = static::getPageLayout();
         $attributes = new Attributes();
@@ -167,7 +165,7 @@ class LayoutHelper
      *
      * @return string
      */
-    public function getCustomSection($sectionId, $template=null, $renderEmpty=false)
+    public function getCustomSection($sectionId, $template = null, $renderEmpty = false)
     {
         return $this->flexibleSections->getCustomSection($sectionId, $template, $renderEmpty);
     }
@@ -180,7 +178,7 @@ class LayoutHelper
      *
      * @return string
      */
-    public function getCustomSections($position, $template='block_sections')
+    public function getCustomSections($position, $template = 'block_sections')
     {
         return $this->flexibleSections->getCustomSections($position, $template);
     }
@@ -205,19 +203,19 @@ class LayoutHelper
 
         switch ($layout->cols) {
             case '2cll':
-                $this->leftClass           = $layout->bootstrap_leftClass;
-                $this->mainClass           = $layout->bootstrap_mainClass;
+                $this->leftClass = $layout->bootstrap_leftClass;
+                $this->mainClass = $layout->bootstrap_mainClass;
                 break;
 
             case '2clr':
-                $this->rightClass          = $layout->bootstrap_rightClass;
-                $this->mainClass           = $layout->bootstrap_mainClass;
+                $this->rightClass = $layout->bootstrap_rightClass;
+                $this->mainClass  = $layout->bootstrap_mainClass;
                 break;
 
             case '3cl':
-                $this->leftClass           = $layout->bootstrap_leftClass;
-                $this->rightClass          = $layout->bootstrap_rightClass;
-                $this->mainClass           = $layout->bootstrap_mainClass;
+                $this->leftClass  = $layout->bootstrap_leftClass;
+                $this->rightClass = $layout->bootstrap_rightClass;
+                $this->mainClass  = $layout->bootstrap_mainClass;
                 break;
 
             default:

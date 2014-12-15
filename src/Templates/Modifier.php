@@ -36,7 +36,12 @@ class Modifier
         }
 
         $classes = array_keys($replaceClasses);
-        $classes = array_map(function ($class) { return preg_quote($class, '~'); }, $classes);
+        $classes = array_map(
+            function ($class) {
+                return preg_quote($class, '~');
+            },
+            $classes
+        );
 
         $search = sprintf('~class="([^"]*(%s)[^"]*)"~', implode('|', $classes));
 

@@ -18,9 +18,11 @@ namespace Netzmacht\Bootstrap\Layout\Contao\DataContainer;
 class Layout
 {
     /**
+     * Disable contao framework.
      *
-     * @param $value
-     * @param \DataContainer $dataContainer
+     * @param mixed          $value         Framework value.
+     * @param \DataContainer $dataContainer Data container driver.
+     *
      * @return mixed
      */
     public function disableFramework($value, \DataContainer $dataContainer)

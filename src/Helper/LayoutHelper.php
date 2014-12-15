@@ -6,6 +6,11 @@ use Netzmacht\Contao\FlexibleSections\Helper as FlexibleSections;
 use Netzmacht\Bootstrap\Core\Bootstrap;
 use Netzmacht\Html\Attributes;
 
+/**
+ * LayoutHelper is a template helper for the fe_bootstrap template.
+ *
+ * @package Netzmacht\Bootstrap\Layout\Helper
+ */
 class LayoutHelper
 {
     const LEFT   = 'left';
@@ -15,37 +20,51 @@ class LayoutHelper
     const FOOTER = 'footer';
 
     /**
+     * Frontend page template.
+     *
      * @var \FrontendTemplate
      */
     protected $template;
 
     /**
+     * Main css class.
+     *
      * @var string
      */
     protected $mainClass;
 
     /**
+     * Left css class.
+     *
      * @var string
      */
     protected $leftClass;
 
     /**
+     * Right css class.
+     *
      * @var string
      */
     protected $rightClass;
 
     /**
+     * Use grid column system.
+     *
      * @var bool
      */
     protected $useGrid;
 
     /**
+     * Flexible section helper.
+     *
      * @var FlexibleSections
      */
     protected $flexibleSections;
 
     /**
-     * @param \FrontendTemplate $template
+     * Construct.
+     *
+     * @param \FrontendTemplate $template Frontend page template.
      */
     protected function __construct($template)
     {
@@ -54,6 +73,8 @@ class LayoutHelper
     }
 
     /**
+     * Get page layout.
+     *
      * @return \LayoutModel|null
      */
     public static function getPageLayout()
@@ -62,7 +83,10 @@ class LayoutHelper
     }
 
     /**
-     * @param \FrontendTemplate $template
+     * Instantiate helper for frontend page template.
+     *
+     * @param \FrontendTemplate $template Frontend page template.
+     *
      * @return static
      */
     public static function forTemplate(\FrontendTemplate $template)
@@ -75,6 +99,8 @@ class LayoutHelper
     }
 
     /**
+     * Check if page layout is a bootstrap layout.
+     *
      * @return bool
      */
     public static function isBootstrapLayout()
@@ -85,11 +111,14 @@ class LayoutHelper
     }
 
     /**
-     * @param $id
-     * @param bool $inside
-     * @return \Netzmacht\Html\Attributes
+     * Get attributes for a specific section.
+     *
+     * @param string $sectionId The section id
+     * @param bool   $inside    If true the inside class is added. Otherwhise $sectionId is set as id attribute.
+     *
+     * @return Attributes
      */
-    public function getAttributes($id, $inside=false)
+    public function getAttributes($sectionId, $inside=false)
     {
         $layout     = static::getPageLayout();
         $attributes = new Attributes();
@@ -97,17 +126,17 @@ class LayoutHelper
         if ($inside) {
             $attributes->addClass('inside');
         } else {
-            $attributes->setId($id);
+            $attributes->setId($sectionId);
         }
 
-        if ($id == static::FOOTER || $id == static::HEADER) {
-            $key = sprintf('bootstrap_%sClass', $id);
+        if ($sectionId == static::FOOTER || $sectionId == static::HEADER) {
+            $key = sprintf('bootstrap_%sClass', $sectionId);
 
             if ($layout->$key) {
                 $attributes->addClass($layout->$key);
             }
         } elseif (static::isGridActive()) {
-            $key = sprintf('%sClass', $id);
+            $key = sprintf('%sClass', $sectionId);
 
             if ($this->$key) {
                 $attributes->addClass($this->$key);
@@ -118,6 +147,8 @@ class LayoutHelper
     }
 
     /**
+     * Check if grid is active.
+     *
      * @return bool
      */
     public function isGridActive()
@@ -128,19 +159,25 @@ class LayoutHelper
     }
 
     /**
-     * @param $id
-     * @param string $template
-     * @param bool $renderEmpty
+     * Get custom section.
+     *
+     * @param string $sectionId   Section id.
+     * @param string $template    Section template.
+     * @param bool   $renderEmpty Force section being rendered when being empty.
+     *
      * @return string
      */
-    public function getCustomSection($id, $template=null, $renderEmpty=false)
+    public function getCustomSection($sectionId, $template=null, $renderEmpty=false)
     {
-        return $this->flexibleSections->getCustomSection($id, $template, $renderEmpty);
+        return $this->flexibleSections->getCustomSection($sectionId, $template, $renderEmpty);
     }
 
     /**
-     * @param $position
-     * @param string $template
+     * Get custom sections.
+     *
+     * @param string $position Section position.
+     * @param string $template Block template.
+     *
      * @return string
      */
     public function getCustomSections($position, $template='block_sections')
@@ -149,7 +186,9 @@ class LayoutHelper
     }
 
     /**
-     * Initialize the system
+     * Initialize the helper.
+     *
+     * @return void
      */
     private function initialize()
     {

@@ -13,10 +13,18 @@ namespace Netzmacht\Bootstrap\Layout\Templates;
 
 use Netzmacht\Bootstrap\Core\Bootstrap;
 
+/**
+ * Class Modifier stores the replace css classes hook.
+ *
+ * @package Netzmacht\Bootstrap\Layout\Templates
+ */
 class Modifier
 {
     /**
-     * @param string $buffer
+     * Replace css classes.
+     *
+     * @param string $buffer Output buffer.
+     *
      * @return string
      */
     public static function replaceCssClasses($buffer)

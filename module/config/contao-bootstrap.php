@@ -7,7 +7,7 @@ $config = array(
 
 		'metapalette' => array(
 			'-sections' => array('sections', 'sPosition'),
-			'+sections' => array('bootstrap_sections'),
+			'+sections' => array('flexible_sections'),
 			'-style'    => array('framework'),
 			'-static'   => array('static'),
 		),

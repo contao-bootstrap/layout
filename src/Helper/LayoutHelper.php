@@ -2,6 +2,7 @@
 
 namespace Netzmacht\Bootstrap\Layout\Helper;
 
+use Netzmacht\Contao\FlexibleSections\Helper as FlexibleSections;
 use Netzmacht\Bootstrap\Core\Bootstrap;
 use Netzmacht\Html\Attributes;
 
@@ -39,11 +40,17 @@ class LayoutHelper
     protected $useGrid;
 
     /**
+     * @var FlexibleSections
+     */
+    protected $flexibleSections;
+
+    /**
      * @param \FrontendTemplate $template
      */
     protected function __construct($template)
     {
-        $this->template = $template;
+        $this->template         = $template;
+        $this->flexibleSections = new FlexibleSections($template);
     }
 
     /**
@@ -128,31 +135,7 @@ class LayoutHelper
      */
     public function getCustomSection($id, $template=null, $renderEmpty=false)
     {
-        // section specification can be passed instead of the id
-        if (is_array($id)) {
-            $sectionSpec = $id;
-            $id          = $sectionSpec['id'];
-        } else {
-            $sectionSpec = $this->getSectionSpecification($id);
-        }
-
-        if (!$renderEmpty && (!isset($this->template->sections[$id]) || ! $this->template->sections[$id])) {
-            return '';
-        }
-
-        if ($template === null) {
-            if ($sectionSpec && $sectionSpec['template'] != '') {
-                $template = $sectionSpec['template'];
-            } else {
-                $template = 'block_section';
-            }
-        }
-
-        $blockTemplate          = new \FrontendTemplate($template);
-        $blockTemplate->id      = $id;
-        $blockTemplate->content = $this->template->sections[$id];
-
-        return $blockTemplate->parse();
+        return $this->flexibleSections->getCustomSection($id, $template, $renderEmpty);
     }
 
     /**
@@ -162,25 +145,7 @@ class LayoutHelper
      */
     public function getCustomSections($position, $template='block_sections')
     {
-        $specifications = $this->getSectionSpecifications($position);
-        $sections       = array();
-
-        foreach ($specifications as $section) {
-            $buffer = $this->getCustomSection($section);
-
-            if ($buffer) {
-                $sections[$section['id']] = $buffer;
-            }
-        }
-
-        if (!$sections) {
-            return '';
-        }
-
-        $template = new \FrontendTemplate($template);
-        $template->sections = $sections;
-
-        return $template->parse();
+        return $this->flexibleSections->getCustomSections($position, $template);
     }
 
     /**
@@ -224,40 +189,4 @@ class LayoutHelper
 
         $this->useGrid = true;
     }
-
-    /**
-     * @param $id
-     * @return bool
-     */
-    private function getSectionSpecification($id)
-    {
-        $sections = $this->getSectionSpecifications();
-
-        foreach ($sections as $section) {
-            if ($section['id'] == $id) {
-                return $section;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string|null $position
-     * @return mixed
-     */
-    private function getSectionSpecifications($position=null)
-    {
-        $layout   = static::getPageLayout();
-        $sections = deserialize($layout->bootstrap_sections, true);
-
-        if ($position !== null) {
-            $sections = array_filter($sections, function ($section) use ($position) {
-                return $section['position'] == $position;
-            });
-        }
-
-        return $sections;
-    }
-
 }

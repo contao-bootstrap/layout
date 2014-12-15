@@ -25,7 +25,8 @@
         "contao/core": ">=3.2,<3.5-dev",
         "bit3/contao-meta-palettes":">=1.4.2,<2.0",
         "netzmacht/html": "~1.0",
-        "contao-bootstrap/core": "~1.0"
+        "contao-bootstrap/core": "~1.0",
+        "netzmacht/contao-flexible-sections": "~1.0"
     },
     "conflict": {
         "netzmacht/contao-bootstrap": "*"
@@ -38,6 +39,9 @@
             "sources":{
                 "module": "system/modules/bootstrap-layout"
             },
+            "runonce": [
+                "migrate/runonce.php"
+            ],
             "transifex": {
                 "project": "contao-bootstrap",
                 "prefix": "layout-",

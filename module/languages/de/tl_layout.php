@@ -30,21 +30,9 @@ $GLOBALS['TL_LANG']['tl_layout']['bootstrap_asseticFilter'][0]     = 'Assetic Fi
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_asseticFilter'][1]     = 'Wählen Sie hier einen Assetic Filter oder eine Filter Chain aus, die auf diese Datei angewendet werden.';
 $GLOBALS['TL_LANG']['tl_layout']['viewport'][0]                    = 'Viewport';
 $GLOBALS['TL_LANG']['tl_layout']['viewport'][1]                    = 'Wählen Sie den Viewport für das Layout an. Dieser wird anders als Contao Standard permanent eingebunden. Desktopbrowser ignorieren diesen.';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections'][0]          = 'Eigene Layoutbereiche';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections'][1]          = 'Hier können Sie eigene Layoutbereiche definieren und einem Bereich zuweichen. Das Template muss diese Ausgabe unterstützen. Bei einem herkömmlichen Template werden die Layoutbereiche in einer Position gerendert.';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_label'][0]    = 'Bezeichnung';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_label'][1]    = 'Bezeichnung des Labels im Backend';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_id'][0]       = 'ID';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_id'][1]       = 'Eindeutiger Bezeichnung der Layoutbereiches';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_template'][0] = 'Template';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_template'][1] = 'Ausgabe kann über ein Template gesteuert werden.';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_position'][0] = 'Position';
-$GLOBALS['TL_LANG']['tl_layout']['bootstrap_sections_position'][1] = 'Position des Layoutbereichs';
 
 /**
  * values
  */
 $GLOBALS['TL_LANG']['tl_layout']['safeTpl']   = 'Im Theme verfügbar';
 $GLOBALS['TL_LANG']['tl_layout']['unsafeTpl'] = 'In anderen Themes';
-
-$GLOBALS['TL_LANG']['tl_layout']['custom'] = 'Manuelle Ausgabe';

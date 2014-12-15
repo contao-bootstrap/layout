@@ -20,7 +20,7 @@ class runonce
 
         $query = <<<SQL
 UPDATE  tl_layout
-SET     bootstrap_section=flexible_sections
+SET     flexible_sections=bootstrap_section
 WHERE   bootstrap_section != '' AND flexible_sections = ''
 SQL;
 

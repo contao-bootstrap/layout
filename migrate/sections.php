@@ -2,7 +2,7 @@
 
 namespace Netzmacht\Bootstrap\Layout\Migrate;
 
-class runonce
+class sections
 {
     public function execute()
     {
@@ -19,14 +19,14 @@ class runonce
         }
 
         $query = <<<SQL
-UPDATE  tl_layout
-SET     flexible_sections=bootstrap_sections
-WHERE   bootstrap_sections != '' AND flexible_sections IS NULL
+UPDATE tl_layout
+SET    flexible_sections=bootstrap_sections
+WHERE  bootstrap_sections != '' AND flexible_sections IS NULL
 SQL;
 
         $database->query($query);
     }
 }
 
-$runonce = new runonce;
-$runonce->execute();
+$controller = new sections;
+$controller->execute();

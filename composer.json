@@ -42,7 +42,7 @@
                 "module": "system/modules/bootstrap-layout"
             },
             "runonce": [
-                "migrate/runonce.php"
+                "migrate/sections.php"
             ],
             "transifex": {
                 "project": "contao-bootstrap",

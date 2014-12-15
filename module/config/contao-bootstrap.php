@@ -6,8 +6,6 @@ $config = array(
 		'viewport' => 'width=device-width, initial-scale=1.0',
 
 		'metapalette' => array(
-			'-sections' => array('sections', 'sPosition'),
-			'+sections' => array('flexible_sections'),
 			'-style'    => array('framework'),
 			'-static'   => array('static'),
 		),

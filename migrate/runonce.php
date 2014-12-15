@@ -6,6 +6,7 @@ class runonce
 {
     public function execute()
     {
+        \BackendUser::getInstance();
         $database = \Database::getInstance();
 
         if (!$database->fieldExists('bootstrap_sections', 'tl_layout')) {

@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package   netzmacht-bootstrap
- * @author    netzmacht creative David Molineus
- * @license   MPL/2.0
- * @copyright 2013 netzmacht creative David Molineus
+ * @package    dev
+ * @author     David Molineus <david.molineus@netzmacht.de>
+ * @copyright  2014 netzmacht creative David Molineus
+ * @license    LGPL 3.0
+ * @filesource
+ *
  */
 
 namespace Netzmacht\Bootstrap\Layout\Contao\DataContainer;

@@ -1,4 +1,4 @@
 
 <div class="jumbotron">
-	<?php echo $this->content; ?>
+  <?php echo $this->content; ?>
 </div>

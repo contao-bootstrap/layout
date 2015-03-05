@@ -9,6 +9,13 @@
  *
  */
 
+/*
+ * Palettes
+ */
+$GLOBALS['TL_DCA']['tl_layout']['metasubselectpalettes']['bootstrap_containerElement']['!'] = array(
+    'bootstrap_containerClass'
+);
+
 /**
  * fields
  */
@@ -87,4 +94,23 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport'] = array
     'inputType'               => 'text',
     'eval'                    => array('tl_class' => 'w50', 'decodeEntities' => true),
     'sql'                     => "varchar(255) NOT NULL default ''",
+);
+
+$GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_containerElement'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bootstrap_containerElement'],
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options'                 => array('container', 'wrapper'),
+    'eval'                    => array('tl_class' => 'w50', 'includeBlankOption' => true, 'submitOnChange' => true),
+    'sql'                     => "varchar(10) NOT NULL default 'container'"
+);
+
+$GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_containerClass'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bootstrap_containerClass'],
+    'exclude'                 => true,
+    'inputType'               => 'text',
+    'eval'                    => array('tl_class' => 'w50'),
+    'sql'                     => "varchar(128) NOT NULL default 'container'"
 );

@@ -27,7 +27,7 @@
 
 <?php echo $helper->getCustomSections('top'); ?>
 
-<div id="wrapper">
+<div <?php echo $helper->getAttributes($helper::WRAPPER); ?>>
 
     <?php if ($this->header): ?>
         <header id="header">
@@ -39,7 +39,7 @@
 
     <?php echo $helper->getCustomSections('before'); ?>
 
-    <div id="container" class="container">
+    <div <?php echo $helper->getAttributes($helper::CONTAINER); ?>>
         <?php if($helper->isGridActive()): ?><div class="row"><?php endif; ?>
             <div <?php echo $helper->getAttributes($helper::MAIN); ?>>
                 <div class="inside">

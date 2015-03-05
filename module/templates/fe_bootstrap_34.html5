@@ -35,7 +35,7 @@
 <?php $this->block('body'); ?>
 <?php echo $helper->getCustomSections('top'); ?>
 
-<div id="wrapper">
+<div <?php echo $helper->getAttributes($helper::WRAPPER); ?>>
 
     <?php $this->block('header'); ?>
     <?php if ($this->header): ?>
@@ -50,7 +50,7 @@
     <?php echo $helper->getCustomSections('before'); ?>
 
     <?php $this->block('container'); ?>
-    <div id="container" class="container">
+    <div <?php echo $helper->getAttributes($helper::CONTAINER); ?>>
         <?php if($helper->isGridActive()): ?><div class="row"><?php endif; ?>
 
             <?php $this->block('main'); ?>

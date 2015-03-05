@@ -22,11 +22,13 @@ use Netzmacht\Html\Attributes;
  */
 class LayoutHelper
 {
-    const LEFT   = 'left';
-    const RIGHT  = 'right';
-    const MAIN   = 'main';
-    const HEADER = 'header';
-    const FOOTER = 'footer';
+    const LEFT      = 'left';
+    const RIGHT     = 'right';
+    const MAIN      = 'main';
+    const HEADER    = 'header';
+    const FOOTER    = 'footer';
+    const WRAPPER   = 'wrapper';
+    const CONTAINER = 'container';
 
     /**
      * Frontend page template.
@@ -141,6 +143,12 @@ class LayoutHelper
 
             if ($layout->$key) {
                 $attributes->addClass($layout->$key);
+            }
+        } elseif ($sectionId === static::CONTAINER || $sectionId === static::WRAPPER) {
+            $class = $layout->bootstrap_containerClass;
+
+            if ($class && $layout->bootstrap_containerElement === $sectionId) {
+                $attributes->addClass($class);
             }
         } elseif (static::isGridActive()) {
             $key = sprintf('%sClass', $sectionId);

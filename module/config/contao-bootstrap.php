@@ -15,8 +15,9 @@ $config = array(
         'viewport' => 'width=device-width, initial-scale=1.0',
 
         'metapalette' => array(
-            '-style'    => array('framework'),
-            '-static'   => array('static'),
+            '-style'                 => array('framework'),
+            '-static'                => array('static'),
+            'container after column' => array('bootstrap_containerElement'),
         ),
 
         'metasubselectpalettes' => array(

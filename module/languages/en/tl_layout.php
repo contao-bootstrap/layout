@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Legends
+ */
+$GLOBALS['TL_LANG']['tl_layout']['container_legend'] = 'Container';
+
 /**
  * fields
  */
@@ -29,6 +34,10 @@ $GLOBALS['TL_LANG']['tl_layout']['bootstrap_asseticFilter'][0]     = 'Assetic fi
 $GLOBALS['TL_LANG']['tl_layout']['bootstrap_asseticFilter'][1]     = 'Please select an assetic filter or a filter chain which will be used for the file.';
 $GLOBALS['TL_LANG']['tl_layout']['viewport'][0]                    = 'Viewport';
 $GLOBALS['TL_LANG']['tl_layout']['viewport'][1]                    = 'Please select the viewport on the layout. Unlike contao standard it will be included permanently. Desktop browser will ignore.';
+$GLOBALS['TL_LANG']['tl_layout']['bootstrap_containerElement'][0]  = 'Container element';
+$GLOBALS['TL_LANG']['tl_layout']['bootstrap_containerElement'][1]  = 'Please choose the element to which should act as Bootstrap container';
+$GLOBALS['TL_LANG']['tl_layout']['bootstrap_containerClass'][0]    = 'Container class';
+$GLOBALS['TL_LANG']['tl_layout']['bootstrap_containerClass'][1]    = 'Insert the css class which is used for the container. You are free to use <em>container</em>, <em>container-fluid</em> or any custom class.';
 
 /**
  * values

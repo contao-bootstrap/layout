@@ -138,13 +138,13 @@ class LayoutHelper
             $attributes->setId($sectionId);
         }
 
-        if ($sectionId == static::FOOTER || $sectionId == static::HEADER) {
+        if (in_array($sectionId, array(static::FOOTER, static::HEADER))) {
             $key = sprintf('bootstrap_%sClass', $sectionId);
 
             if ($layout->$key) {
                 $attributes->addClass($layout->$key);
             }
-        } elseif ($sectionId === static::CONTAINER || $sectionId === static::WRAPPER) {
+        } elseif (in_array($sectionId, array(static::CONTAINER, static::WRAPPER))) {
             $class = $layout->bootstrap_containerClass;
 
             if ($class && $layout->bootstrap_containerElement === $sectionId) {

@@ -66,21 +66,13 @@ class LayoutHelper
     protected $useGrid;
 
     /**
-     * Flexible section helper.
-     *
-     * @var FlexibleSections
-     */
-    protected $flexibleSections;
-
-    /**
      * Construct.
      *
      * @param \FrontendTemplate $template Frontend page template.
      */
     protected function __construct($template)
     {
-        $this->template         = $template;
-        $this->flexibleSections = new FlexibleSections($template);
+        $this->template = $template;
 
         $this->initialize();
     }
@@ -184,7 +176,7 @@ class LayoutHelper
      */
     public function getCustomSection($sectionId, $template = null, $renderEmpty = false)
     {
-        return $this->flexibleSections->getCustomSection($sectionId, $template, $renderEmpty);
+        return $this->getFlexibleSectionsHelper()->getCustomSection($sectionId, $template, $renderEmpty);
     }
 
     /**
@@ -197,7 +189,7 @@ class LayoutHelper
      */
     public function getCustomSections($position, $template = 'block_sections')
     {
-        return $this->flexibleSections->getCustomSections($position, $template);
+        return $this->getFlexibleSectionsHelper()->getCustomSections($position, $template);
     }
 
     /**
@@ -242,5 +234,15 @@ class LayoutHelper
         }
 
         $this->useGrid = true;
+    }
+
+    /**
+     * Get flexible sections helper.
+     *
+     * @return FlexibleSections
+     */
+    private function getFlexibleSectionsHelper()
+    {
+        return $this->template->getFlexibleSectionsHelper();
     }
 }

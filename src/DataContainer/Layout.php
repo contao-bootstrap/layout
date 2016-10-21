@@ -9,7 +9,9 @@
  *
  */
 
-namespace Netzmacht\Bootstrap\Layout\Contao\DataContainer;
+namespace ContaoBootstrap\Layout\DataContainer;
+
+use ContaoBootstrap\Core\Config;
 
 
 /**
@@ -19,6 +21,32 @@ namespace Netzmacht\Bootstrap\Layout\Contao\DataContainer;
  */
 class Layout
 {
+    /**
+     * Bootstrap config.
+     *
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * Layout constructor.
+     */
+    public function __construct()
+    {
+        // TODO: Dependency injection.
+        $this->config = \Controller::getContainer()->get('contao_bootstrap.config');
+    }
+
+    /**
+     * Set the default viewport.
+     *
+     * @return void
+     */
+    public function setDefaultViewPort()
+    {
+        $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport']['default'] = $this->config->get('layout.viewport', '');
+    }
+
     /**
      * Disable contao framework.
      *

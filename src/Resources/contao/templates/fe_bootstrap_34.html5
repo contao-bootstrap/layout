@@ -1,4 +1,4 @@
-<?php $helper = Netzmacht\Bootstrap\Layout\Helper\LayoutHelper::forTemplate($this); ?>
+<?php $helper = ContaoBootstrap\Layout\Helper\LayoutHelper::forTemplate($this); ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" <?php if ($this->isRTL): ?> dir="rtl"<?php endif; ?>>
 <head>

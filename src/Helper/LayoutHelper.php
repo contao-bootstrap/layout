@@ -9,7 +9,7 @@
  *
  */
 
-namespace Netzmacht\Bootstrap\Layout\Helper;
+namespace ContaoBootstrap\Layout\Helper;
 
 use Netzmacht\Contao\FlexibleSections\Helper as FlexibleSections;
 use Netzmacht\Bootstrap\Core\Bootstrap;
@@ -18,7 +18,7 @@ use Netzmacht\Html\Attributes;
 /**
  * LayoutHelper is a template helper for the fe_bootstrap template.
  *
- * @package Netzmacht\Bootstrap\Layout\Helper
+ * @package ContaoBootstrap\Layout\Helper
  */
 class LayoutHelper
 {

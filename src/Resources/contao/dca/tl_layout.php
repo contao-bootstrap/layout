@@ -10,6 +10,14 @@
  */
 
 /*
+ * Config
+ */
+$GLOBALS['TL_DCA']['tl_layout']['config']['onload_callback'][] = [
+    'ContaoBootstrap\Layout\DataContainer\Layout',
+    'setDefaultViewport'
+];
+
+/*
  * Palettes
  */
 $GLOBALS['TL_DCA']['tl_layout']['metasubselectpalettes']['bootstrap_containerElement']['!'] = array(
@@ -24,7 +32,7 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['name']['eval']['tl_class'] = 'w50';
 // use template loader which shows list of safe and unsafe templates
 $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['reference'] = $GLOBALS['TL_LANG']['tl_layout'];
 $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['options_callback'] = array(
-    'Netzmacht\Bootstrap\Core\Contao\DataContainer\Module',
+    'ContaoBootstrap\Core\DataContainer\Module',
     'getTemplates'
 );
 
@@ -37,7 +45,7 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['eval'] = array(
 $GLOBALS['TL_DCA']['tl_layout']['fields']['framework']['default'] = array();
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['layoutType']['save_callback'][] = array(
-    'Netzmacht\Bootstrap\Layout\Contao\DataContainer\Layout',
+    'ContaoBootstrap\Layout\DataContainer\Layout',
     'disableFramework'
 );
 
@@ -90,7 +98,7 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport'] = array
 (
     'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['viewport'],
     'exclude'                 => true,
-    'default'                 => \Netzmacht\Bootstrap\Core\Bootstrap::getConfigVar('layout.viewport', ''),
+    'default'                 => '',
     'inputType'               => 'text',
     'eval'                    => array('tl_class' => 'w50', 'decodeEntities' => true),
     'sql'                     => "varchar(255) NOT NULL default ''",

@@ -9,14 +9,14 @@
  *
  */
 
-namespace Netzmacht\Bootstrap\Layout\Templates;
+namespace ContaoBootstrap\Layout\Templates;
 
 use Netzmacht\Bootstrap\Core\Bootstrap;
 
 /**
  * Class Modifier stores the replace css classes hook.
  *
- * @package Netzmacht\Bootstrap\Layout\Templates
+ * @package ContaoBootstrap\Layout\Templates
  */
 class Modifier
 {

@@ -46,7 +46,7 @@ $config = array(
         'parsers' => array(
             'callback_replace-classes' => array(
                 'type'      => 'callback',
-                'callback'  => array('Netzmacht\Bootstrap\Layout\Templates\Modifier', 'replaceCssClasses'),
+                'callback'  => array('ContaoBootstrap\Layout\Templates\Modifier', 'replaceCssClasses'),
                 'templates' => array('fe_*'),
             )
         )

@@ -22,7 +22,7 @@ layout:
 
       3rw:
         - bootstrap_headerClass
-        - bootstrap_footerClass,
+        - bootstrap_footerClass
 
     cols:
       1cl: []

@@ -20,12 +20,9 @@
     },
     "require":{
         "php":">=5.3.4",
-        "contao-community-alliance/composer-plugin": "~2.0",
-        "contao-community-alliance/dependency-container": "~1.4",
-        "contao/core": ">=3.2,<3.6-dev",
-        "netzmacht/html": "~1.0",
-        "contao-bootstrap/core": "~1.0",
-        "netzmacht/contao-flexible-sections": "~1.0"
+        "contao-community-alliance/composer-plugin": "~3.0",
+        "contao/core-bundle": "~4.3",
+        "contao-bootstrap/core": "~2.0"
     },
     "require-dev": {
         "netzmacht/contao-build-tools": "~1.1"
@@ -34,13 +31,10 @@
         "netzmacht/contao-bootstrap": "*"
     },
     "autoload": {
-        "psr-4": { "Netzmacht\\Bootstrap\\Layout\\": "src/" }
+        "psr-4": { "ContaoBootstrap\\Layout\\": "src/" }
     },
     "extra":{
         "contao": {
-            "sources":{
-                "module": "system/modules/bootstrap-layout"
-            },
             "runonce": [
                 "migrate/sections.php"
             ],
@@ -53,7 +47,8 @@
         },
         "branch-alias": {
             "dev-master": "1.0.x-dev",
-            "dev-develop": "1.1.x-dev"
+            "dev-develop": "1.1.x-dev",
+            "dev-contao4": "2.0.x-dev"
         }
     },
     "minimum-stability": "dev",

@@ -82,7 +82,7 @@ class LayoutHelper
      */
     public static function getPageLayout()
     {
-        return \Controller::getContainer()->get('contao_bootstrap.environment')->getPageLayout();
+        return \Controller::getContainer()->get('contao_bootstrap.environment')->getLayout();
     }
 
     /**
@@ -154,6 +154,11 @@ class LayoutHelper
                     $attributes->setAttribute('itemscope', true);
                     $attributes->setAttribute('itemtype', 'http://schema.org/WebPageElement');
                     $attributes->setAttribute('itemprop', 'mainContentOfPage');
+                    break;
+
+                case static::HEADER:
+                    $attributes->setAttribute('itemscope', true);
+                    $attributes->setAttribute('itemtype', 'http://schema.org/WPHeader');
                     break;
             }
         }

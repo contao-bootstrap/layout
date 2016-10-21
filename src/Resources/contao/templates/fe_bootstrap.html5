@@ -50,7 +50,7 @@
           <?php if ($helper->isGridActive()): ?><div class="row"><?php endif; ?>
 
           <?php $this->block('main'); ?>
-            <main  <?= $helper->getAttributes($helper::CONTAINER) ?>>
+            <main <?= $helper->getAttributes($helper::MAIN) ?>>
               <div class="inside">
                 <?= $this->main ?>
               </div>

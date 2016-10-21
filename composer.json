@@ -22,7 +22,8 @@
         "php":">=5.3.4",
         "contao-community-alliance/composer-plugin": "~3.0",
         "contao/core-bundle": "~4.3",
-        "contao-bootstrap/core": "~2.0"
+        "contao-bootstrap/core": "~2.0",
+        "netzmacht/html": "~1"
     },
     "require-dev": {
         "netzmacht/contao-build-tools": "~1.1"
@@ -35,9 +36,6 @@
     },
     "extra":{
         "contao": {
-            "runonce": [
-                "migrate/sections.php"
-            ],
             "transifex": {
                 "project": "contao-bootstrap",
                 "prefix": "layout-",

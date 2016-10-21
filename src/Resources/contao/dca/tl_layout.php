@@ -17,6 +17,11 @@ $GLOBALS['TL_DCA']['tl_layout']['config']['onload_callback'][] = [
     'setDefaultViewport'
 ];
 
+$GLOBALS['TL_DCA']['tl_layout']['config']['onsubmit_callback'][] = [
+    'ContaoBootstrap\Layout\DataContainer\Layout',
+    'disableFramework'
+];
+
 /*
  * Palettes
  */
@@ -43,11 +48,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['eval'] = array(
 
 // do not import layout builder by default to prevent side effects
 $GLOBALS['TL_DCA']['tl_layout']['fields']['framework']['default'] = array();
-
-$GLOBALS['TL_DCA']['tl_layout']['fields']['layoutType']['save_callback'][] = array(
-    'ContaoBootstrap\Layout\DataContainer\Layout',
-    'disableFramework'
-);
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bootstrap_headerClass'] = array
 (

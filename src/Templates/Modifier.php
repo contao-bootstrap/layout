@@ -11,7 +11,7 @@
 
 namespace ContaoBootstrap\Layout\Templates;
 
-use Netzmacht\Bootstrap\Core\Bootstrap;
+use ContaoBootstrap\Core\Config;
 
 /**
  * Class Modifier stores the replace css classes hook.
@@ -21,15 +21,31 @@ use Netzmacht\Bootstrap\Core\Bootstrap;
 class Modifier
 {
     /**
+     * Bootstrap config.
+     *
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * Modifier constructor.
+     */
+    public function __construct()
+    {
+        // TODO: Use Dependency injection.
+        $this->config = \Controller::getContainer()->get('contao_bootstrap.config');
+    }
+
+    /**
      * Replace css classes.
      *
      * @param string $buffer Output buffer.
      *
      * @return string
      */
-    public static function replaceCssClasses($buffer)
+    public function replaceCssClasses($buffer)
     {
-        $replaceClasses = Bootstrap::getConfigVar('layout.replace-css-classes');
+        $replaceClasses = $this->config->get('layout.replace-css-classes');
 
         if (empty($replaceClasses)) {
             return $buffer;

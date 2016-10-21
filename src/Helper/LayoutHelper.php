@@ -11,8 +11,6 @@
 
 namespace ContaoBootstrap\Layout\Helper;
 
-use Netzmacht\Contao\FlexibleSections\Helper as FlexibleSections;
-use Netzmacht\Bootstrap\Core\Bootstrap;
 use Netzmacht\Html\Attributes;
 
 /**
@@ -66,21 +64,13 @@ class LayoutHelper
     protected $useGrid;
 
     /**
-     * Flexible section helper.
-     *
-     * @var FlexibleSections
-     */
-    protected $flexibleSections;
-
-    /**
      * Construct.
      *
      * @param \FrontendTemplate $template Frontend page template.
      */
     protected function __construct($template)
     {
-        $this->template         = $template;
-        $this->flexibleSections = new FlexibleSections($template);
+        $this->template = $template;
 
         $this->initialize();
     }
@@ -92,7 +82,7 @@ class LayoutHelper
      */
     public static function getPageLayout()
     {
-        return Bootstrap::getPageLayout();
+        return \Controller::getContainer()->get('contao_bootstrap.environment')->getPageLayout();
     }
 
     /**
@@ -158,6 +148,16 @@ class LayoutHelper
             }
         }
 
+        if (!$inside) {
+            switch($sectionId) {
+                case static::MAIN:
+                    $attributes->setAttribute('itemscope', true);
+                    $attributes->setAttribute('itemtype', 'http://schema.org/WebPageElement');
+                    $attributes->setAttribute('itemprop', 'mainContentOfPage');
+                    break;
+            }
+        }
+
         return $attributes;
     }
 
@@ -174,33 +174,6 @@ class LayoutHelper
     }
 
     /**
-     * Get custom section.
-     *
-     * @param string $sectionId   Section id.
-     * @param string $template    Section template.
-     * @param bool   $renderEmpty Force section being rendered when being empty.
-     *
-     * @return string
-     */
-    public function getCustomSection($sectionId, $template = null, $renderEmpty = false)
-    {
-        return $this->flexibleSections->getCustomSection($sectionId, $template, $renderEmpty);
-    }
-
-    /**
-     * Get custom sections.
-     *
-     * @param string $position Section position.
-     * @param string $template Block template.
-     *
-     * @return string
-     */
-    public function getCustomSections($position, $template = 'block_sections')
-    {
-        return $this->flexibleSections->getCustomSections($position, $template);
-    }
-
-    /**
      * Initialize the helper.
      *
      * @return void
@@ -212,11 +185,6 @@ class LayoutHelper
         }
 
         $layout = static::getPageLayout();
-
-        // only apply viewport if not contao 3.3 is used
-        if ($layout->viewport && !$this->template->viewport && version_compare(VERSION, '3.3', '<')) {
-            $this->template->viewport = sprintf('<meta name="viewport" content="%s">', $layout->viewport);
-        }
 
         switch ($layout->cols) {
             case '2cll':

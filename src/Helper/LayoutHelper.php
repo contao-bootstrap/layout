@@ -11,6 +11,7 @@
 
 namespace ContaoBootstrap\Layout\Helper;
 
+use Contao\LayoutModel;
 use Netzmacht\Html\Attributes;
 
 /**
@@ -64,25 +65,24 @@ class LayoutHelper
     protected $useGrid;
 
     /**
-     * Construct.
+     * Page layout.
      *
-     * @param \FrontendTemplate $template Frontend page template.
+     * @var LayoutModel
      */
-    protected function __construct($template)
-    {
-        $this->template = $template;
-
-        $this->initialize();
-    }
+    private   $layout;
 
     /**
-     * Get page layout.
+     * Construct.
      *
-     * @return \LayoutModel|null
+     * @param \FrontendTemplate $template   Frontend page template.
+     * @param LayoutModel       $pageLayout Layout model.
      */
-    public static function getPageLayout()
+    protected function __construct($template, $pageLayout)
     {
-        return \Controller::getContainer()->get('contao_bootstrap.environment')->getLayout();
+        $this->template = $template;
+        $this->layout   = $pageLayout;
+
+        $this->initialize();
     }
 
     /**
@@ -94,7 +94,10 @@ class LayoutHelper
      */
     public static function forTemplate(\FrontendTemplate $template)
     {
-        return new static($template);
+        // For simplicity in the template, just let it here.
+        $layout = \Controller::getContainer()->get('contao_bootstrap.environment')->getLayout();
+
+        return new static($template, $layout);
     }
 
     /**
@@ -102,11 +105,9 @@ class LayoutHelper
      *
      * @return bool
      */
-    public static function isBootstrapLayout()
+    public function isBootstrapLayout()
     {
-        $layout = static::getPageLayout();
-
-        return ($layout && $layout->layoutType == 'bootstrap');
+        return ($this->layout && $this->layout->layoutType == 'bootstrap');
     }
 
     /**
@@ -119,7 +120,6 @@ class LayoutHelper
      */
     public function getAttributes($sectionId, $inside = false)
     {
-        $layout     = static::getPageLayout();
         $attributes = new Attributes();
 
         if ($inside) {
@@ -131,13 +131,13 @@ class LayoutHelper
         if (in_array($sectionId, array(static::FOOTER, static::HEADER))) {
             $key = sprintf('bootstrap_%sClass', $sectionId);
 
-            if ($layout->$key) {
-                $attributes->addClass($layout->$key);
+            if ($this->layout->$key) {
+                $attributes->addClass($this->layout->$key);
             }
         } elseif (in_array($sectionId, array(static::CONTAINER, static::WRAPPER))) {
-            $class = $layout->bootstrap_containerClass;
+            $class = $this->layout->bootstrap_containerClass;
 
-            if ($class && $layout->bootstrap_containerElement === $sectionId) {
+            if ($class && $this->layout->bootstrap_containerElement === $sectionId) {
                 $attributes->addClass($class);
             }
         } elseif (static::isGridActive()) {
@@ -173,9 +173,7 @@ class LayoutHelper
      */
     public function isGridActive()
     {
-        $layout = static::getPageLayout();
-
-        return $layout->cols != '1cl' && $layout->cols != '';
+        return $this->layout->cols != '1cl' && $this->layout->cols != '';
     }
 
     /**
@@ -189,23 +187,21 @@ class LayoutHelper
             return;
         }
 
-        $layout = static::getPageLayout();
-
-        switch ($layout->cols) {
+        switch ($this->layout->cols) {
             case '2cll':
-                $this->leftClass = $layout->bootstrap_leftClass;
-                $this->mainClass = $layout->bootstrap_mainClass;
+                $this->leftClass = $this->layout->bootstrap_leftClass;
+                $this->mainClass = $this->layout->bootstrap_mainClass;
                 break;
 
             case '2clr':
-                $this->rightClass = $layout->bootstrap_rightClass;
-                $this->mainClass  = $layout->bootstrap_mainClass;
+                $this->rightClass = $this->layout->bootstrap_rightClass;
+                $this->mainClass  = $this->layout->bootstrap_mainClass;
                 break;
 
             case '3cl':
-                $this->leftClass  = $layout->bootstrap_leftClass;
-                $this->rightClass = $layout->bootstrap_rightClass;
-                $this->mainClass  = $layout->bootstrap_mainClass;
+                $this->leftClass  = $this->layout->bootstrap_leftClass;
+                $this->rightClass = $this->layout->bootstrap_rightClass;
+                $this->mainClass  = $this->layout->bootstrap_mainClass;
                 break;
 
             default:

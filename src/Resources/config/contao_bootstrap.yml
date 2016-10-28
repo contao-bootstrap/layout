@@ -39,17 +39,7 @@ layout:
         - bootstrap_mainClass
         - bootstrap_rightClass
 
-  replace-css-classes:
+  replace_css_classes:
       invisible: sr-only
       float_left: pull-left
       float_right: pull-right
-
-templates:
-  parsers2:
-    callback_replace-classes:
-      type: callback
-      callback:
-        - ContaoBootstrap\Layout\Templates\Modifier
-        - replaceCssClasses
-
-      templates: "fe_*"

@@ -1,0 +1,11 @@
+parameters:
+  contao_bootstrap.layout.view.replace_css_classes_modifier.templates: ['fe_*']
+
+services:
+  contao_bootstrap.layout.view.replace_css_classes_modifier:
+    class: ContaoBootstrap\Layout\View\Template\ReplaceCssClassesModifier
+    arguments:
+      - '%contao_bootstrap.layout.view.replace_css_classes_modifier.templates%'
+      - "@=container.get('contao_bootstrap.config').get('layout.replace_css_classes')"
+    tags:
+      - { name: contao_bootstrap.view.template_modifier }

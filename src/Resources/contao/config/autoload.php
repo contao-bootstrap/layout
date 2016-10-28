@@ -11,9 +11,9 @@
 
 \TemplateLoader::addFiles(
     array(
-        'block_section_jumbotron'           => 'vendor/contao-bootstrap/layout/Resources/contao/templates',
-        'block_section_jumbotron_container' => 'vendor/contao-bootstrap/layout/Resources/contao/templates',
-        'block_section_container'           => 'vendor/contao-bootstrap/layout/Resources/contao/templates',
-        'fe_bootstrap'                      => 'vendor/contao-bootstrap/layout/Resources/contao/templates',
+        'block_section_jumbotron'           => 'vendor/contao-bootstrap/layout/src/Resources/contao/templates',
+        'block_section_jumbotron_container' => 'vendor/contao-bootstrap/layout/src/Resources/contao/templates',
+        'block_section_container'           => 'vendor/contao-bootstrap/layout/src/Resources/contao/templates',
+        'fe_bootstrap'                      => 'vendor/contao-bootstrap/layout/src/Resources/contao/templates',
     )
 );

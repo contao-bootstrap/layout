@@ -1,6 +1,6 @@
 layout:
   # default viewport value, can be changed in layout
-  viewport: "width=device-width, initial-scale=1.0"
+  viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
 
   metapalette:
     "-style":

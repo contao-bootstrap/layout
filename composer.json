@@ -19,7 +19,7 @@
         "source":"https://github.com/contao-bootstrap/layout"
     },
     "require":{
-        "php":">=5.3.4",
+        "php":">=5.5.0",
         "contao-community-alliance/composer-plugin": "~3.0",
         "contao/core-bundle": "~4.3",
         "contao-bootstrap/core": "~2.0",

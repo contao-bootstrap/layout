@@ -2,7 +2,7 @@
     "name":"contao-bootstrap/layout",
     "description":"Bootstrap layout integration in Contao",
     "keywords":["bootstrap", "layout", "contao"],
-    "type":"contao-module",
+    "type":"contao-bundle",
     "license":"LGPL-3.0+",
     "authors":[
         {

@@ -39,7 +39,7 @@
             "transifex": {
                 "project": "contao-bootstrap",
                 "prefix": "layout-",
-                "languages_cto": "module/languages",
+                "languages_cto": "src/Resources/languages",
                 "languages_tx": ".tx"
             }
         },

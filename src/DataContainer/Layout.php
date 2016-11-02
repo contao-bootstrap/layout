@@ -40,6 +40,8 @@ class Layout
      * Set the default viewport.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function setDefaultViewPort()
     {

@@ -34,42 +34,42 @@ class LayoutHelper
      *
      * @var \FrontendTemplate
      */
-    protected $template;
+    private $template;
 
     /**
      * Main css class.
      *
      * @var string
      */
-    protected $mainClass;
+    private $mainClass;
 
     /**
      * Left css class.
      *
      * @var string
      */
-    protected $leftClass;
+    private $leftClass;
 
     /**
      * Right css class.
      *
      * @var string
      */
-    protected $rightClass;
+    private $rightClass;
 
     /**
      * Use grid column system.
      *
      * @var bool
      */
-    protected $useGrid;
+    private $useGrid;
 
     /**
      * Page layout.
      *
      * @var LayoutModel
      */
-    private   $layout;
+    private $layout;
 
     /**
      * Construct.
@@ -148,20 +148,7 @@ class LayoutHelper
             }
         }
 
-        if (!$inside) {
-            switch($sectionId) {
-                case static::MAIN:
-                    $attributes->setAttribute('itemscope', true);
-                    $attributes->setAttribute('itemtype', 'http://schema.org/WebPageElement');
-                    $attributes->setAttribute('itemprop', 'mainContentOfPage');
-                    break;
-
-                case static::HEADER:
-                    $attributes->setAttribute('itemscope', true);
-                    $attributes->setAttribute('itemtype', 'http://schema.org/WPHeader');
-                    break;
-            }
-        }
+        $this->addSchemaAttributes($sectionId, $inside, $attributes);
 
         return $attributes;
     }
@@ -211,5 +198,37 @@ class LayoutHelper
         }
 
         $this->useGrid = true;
+    }
+
+    /**
+     * Add the schema attributes.
+     *
+     * @param string     $sectionId  Section id.
+     * @param bool       $inside     If true no schema attributes are added.
+     * @param Attributes $attributes Section attributes.
+     *
+     * @return void
+     */
+    private function addSchemaAttributes($sectionId, $inside, Attributes $attributes)
+    {
+        if ($inside) {
+            return;
+        }
+
+        switch ($sectionId) {
+            case static::MAIN:
+                $attributes->setAttribute('itemscope', true);
+                $attributes->setAttribute('itemtype', 'http://schema.org/WebPageElement');
+                $attributes->setAttribute('itemprop', 'mainContentOfPage');
+                break;
+
+            case static::HEADER:
+                $attributes->setAttribute('itemscope', true);
+                $attributes->setAttribute('itemtype', 'http://schema.org/WPHeader');
+                break;
+
+            default:
+                // Do nothing.
+        }
     }
 }

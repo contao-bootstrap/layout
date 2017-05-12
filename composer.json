@@ -26,10 +26,12 @@
         "netzmacht/html": "~1"
     },
     "require-dev": {
-        "netzmacht/contao-build-tools": "~1.1"
+        "netzmacht/contao-build-tools": "~1.1",
+        "contao/manager-plugin": "^2.0"
     },
     "conflict": {
-        "netzmacht/contao-bootstrap": "*"
+        "netzmacht/contao-bootstrap": "*",
+        "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "autoload": {
         "psr-4": { "ContaoBootstrap\\Layout\\": "src/" }
@@ -47,7 +49,8 @@
             "dev-master": "1.0.x-dev",
             "dev-develop": "1.1.x-dev",
             "dev-contao4": "2.0.x-dev"
-        }
+        },
+        "contao-manager-plugin": "ContaoBootstrap\\Layout\\ContaoManager\\Plugin"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

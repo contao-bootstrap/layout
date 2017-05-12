@@ -26,6 +26,6 @@ class Plugin implements BundlePluginInterface
         $bundleConfig = BundleConfig::create(ContaoBootstrapLayoutBundle::class)
             ->setLoadAfter([ContaoCoreBundle::class, ContaoBootstrapCoreBundle::class]);
 
-        return $bundleConfig;
+        return [$bundleConfig];
     }
 }

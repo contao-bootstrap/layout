@@ -9,3 +9,9 @@ services:
       - "@=container.get('contao_bootstrap.config').get('layout.replace_css_classes')"
     tags:
       - { name: contao_bootstrap.view.template_modifier }
+
+  contao_bootstrap.layout.dca.layout:
+    class: ContaoBootstrap\Layout\DataContainer\Layout
+    arguments:
+      - '@contao_bootstrap.config'
+      - '@database_connection'

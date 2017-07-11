@@ -14,12 +14,12 @@
  */
 
 $GLOBALS['TL_DCA']['tl_layout']['config']['onload_callback'][] = [
-    'ContaoBootstrap\Layout\DataContainer\Layout',
+    'contao_bootstrap.layout.dca.layout',
     'setDefaultViewport'
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['config']['onsubmit_callback'][] = [
-    'ContaoBootstrap\Layout\DataContainer\Layout',
+    'contao_bootstrap.layout.dca.layout',
     'disableFramework'
 ];
 
@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['name']['eval']['tl_class'] = 'w50';
 // use template loader which shows list of safe and unsafe templates
 $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['reference']        = $GLOBALS['TL_LANG']['tl_layout'];
 $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['options_callback'] = array(
-    'ContaoBootstrap\Core\DataContainer\Module',
+    'contao_bootstrap.layout.dca.layout',
     'getTemplates'
 );
 

@@ -12,6 +12,7 @@
 namespace ContaoBootstrap\Layout\DataContainer;
 
 use ContaoBootstrap\Core\Config;
+use Doctrine\DBAL\Connection;
 
 /**
  * Dca Helper class for tl_layout.
@@ -28,12 +29,22 @@ class Layout
     private $config;
 
     /**
-     * Layout constructor.
+     * Database connection.
+     *
+     * @var Connection
      */
-    public function __construct()
+    private $connection;
+
+    /**
+     * Layout constructor.
+     *
+     * @param Config     $config     Bootstrap config.
+     * @param Connection $connection Database connection.
+     */
+    public function __construct(Config $config, Connection $connection)
     {
-        // TODO: Dependency injection.
-        $this->config = \Controller::getContainer()->get('contao_bootstrap.config');
+        $this->config     = $config;
+        $this->connection = $connection;
     }
 
     /**
@@ -59,10 +70,10 @@ class Layout
     {
         if ($dataContainer->activeRecord->layoutType === 'bootstrap' && $dataContainer->activeRecord->framework) {
             $dataContainer->activeRecord->framework = [];
-            \Database::getInstance()
-                ->prepare('UPDATE tl_layout %s WHERE id=?')
-                ->set(array('framework' => []))
-                ->execute($dataContainer->id);
+
+            $statement = $this->connection->prepare('UPDATE tl_layout SET framework = \'\' WHERE id=?');
+            $statement->bindValue(1, $dataContainer->id);
+            $statement->execute();
         }
     }
 }

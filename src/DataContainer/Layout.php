@@ -50,40 +50,6 @@ class Layout
     }
 
     /**
-     * Get all templates. A templatePrefix can be defined using eval.templatePrefix.
-     *
-     * @param DataContainer $dataContainer The data container driver.
-     *
-     * @return array
-     *
-     * @SuppressWarnings(PHPMD.Superglobals)
-     */
-    public function getTemplates(DataContainer $dataContainer)
-    {
-        $config = array();
-        $prefix = '';
-
-        // MCW compatibility
-        if ($dataContainer instanceof MultiColumnWizard) {
-            $field = $dataContainer->strField;
-            $table = $dataContainer->strTable;
-        } else {
-            $field = $dataContainer->field;
-            $table = $dataContainer->table;
-        }
-
-        if (array_key_exists('eval', $GLOBALS['TL_DCA'][$table]['fields'][$field])) {
-            $config = $GLOBALS['TL_DCA'][$table]['fields'][$field]['eval'];
-        }
-
-        if (array_key_exists('templatePrefix', $config)) {
-            $prefix = $config['templatePrefix'];
-        }
-
-        return \Controller::getTemplateGroup($prefix);
-    }
-
-    /**
      * Set the default viewport.
      *
      * @return void

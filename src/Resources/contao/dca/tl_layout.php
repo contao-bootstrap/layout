@@ -37,13 +37,6 @@ $GLOBALS['TL_DCA']['tl_layout']['metasubselectpalettes']['bootstrap_containerEle
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['name']['eval']['tl_class'] = 'w50';
 
-// use template loader which shows list of safe and unsafe templates
-$GLOBALS['TL_DCA']['tl_layout']['fields']['template']['reference']        = $GLOBALS['TL_LANG']['tl_layout'];
-$GLOBALS['TL_DCA']['tl_layout']['fields']['template']['options_callback'] = array(
-    'contao_bootstrap.layout.dca.layout',
-    'getTemplates'
-);
-
 $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['eval'] = array(
     'templatePrefix'  => 'fe_',
     'templateThemeId' => 'pid'

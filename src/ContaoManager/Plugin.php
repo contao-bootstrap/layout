@@ -16,6 +16,11 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use ContaoBootstrap\Core\ContaoBootstrapCoreBundle;
 use ContaoBootstrap\Layout\ContaoBootstrapLayoutBundle;
 
+/**
+ * Contao Manager plugin.
+ *
+ * @package ContaoBootstrap\Layout\ContaoManager
+ */
 class Plugin implements BundlePluginInterface
 {
     /**
@@ -24,7 +29,12 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         $bundleConfig = BundleConfig::create(ContaoBootstrapLayoutBundle::class)
-            ->setLoadAfter([ContaoCoreBundle::class, ContaoBootstrapCoreBundle::class]);
+            ->setLoadAfter(
+                [
+                    ContaoCoreBundle::class,
+                    ContaoBootstrapCoreBundle::class,
+                ]
+            );
 
         return [$bundleConfig];
     }

@@ -50,7 +50,5 @@
             "dev-contao4": "2.0.x-dev"
         },
         "contao-manager-plugin": "ContaoBootstrap\\Layout\\ContaoManager\\Plugin"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

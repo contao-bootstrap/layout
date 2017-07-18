@@ -129,15 +129,15 @@ class LayoutHelper
         }
 
         if (in_array($sectionId, array(static::FOOTER, static::HEADER))) {
-            $key = sprintf('bootstrap_%sClass', $sectionId);
+            $key = sprintf('bs_%sClass', $sectionId);
 
             if ($this->layout->$key) {
                 $attributes->addClass($this->layout->$key);
             }
         } elseif (in_array($sectionId, array(static::CONTAINER, static::WRAPPER))) {
-            $class = $this->layout->bootstrap_containerClass;
+            $class = $this->layout->bs_containerClass;
 
-            if ($class && $this->layout->bootstrap_containerElement === $sectionId) {
+            if ($class && $this->layout->bs_containerElement === $sectionId) {
                 $attributes->addClass($class);
             }
         } elseif (static::isGridActive()) {
@@ -176,19 +176,19 @@ class LayoutHelper
 
         switch ($this->layout->cols) {
             case '2cll':
-                $this->leftClass = $this->layout->bootstrap_leftClass;
-                $this->mainClass = $this->layout->bootstrap_mainClass;
+                $this->leftClass = $this->layout->bs_leftClass;
+                $this->mainClass = $this->layout->bs_mainClass;
                 break;
 
             case '2clr':
-                $this->rightClass = $this->layout->bootstrap_rightClass;
-                $this->mainClass  = $this->layout->bootstrap_mainClass;
+                $this->rightClass = $this->layout->bs_rightClass;
+                $this->mainClass  = $this->layout->bs_mainClass;
                 break;
 
             case '3cl':
-                $this->leftClass  = $this->layout->bootstrap_leftClass;
-                $this->rightClass = $this->layout->bootstrap_rightClass;
-                $this->mainClass  = $this->layout->bootstrap_mainClass;
+                $this->leftClass  = $this->layout->bs_leftClass;
+                $this->rightClass = $this->layout->bs_rightClass;
+                $this->mainClass  = $this->layout->bs_mainClass;
                 break;
 
             default:

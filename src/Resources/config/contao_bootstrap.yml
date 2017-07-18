@@ -10,34 +10,34 @@ layout:
       - static
 
     "container after column":
-      - bootstrap_containerElement
+      - bs_containerElement
 
   metasubselectpalettes:
     rows:
       2rwh:
-        - bootstrap_headerClass
+        - bs_headerClass
 
       2rwf:
-        - bootstrap_footerClass
+        - bs_footerClass
 
       3rw:
-        - bootstrap_headerClass
-        - bootstrap_footerClass
+        - bs_headerClass
+        - bs_footerClass
 
     cols:
       1cl: []
       2cll:
-        - bootstrap_leftClass
-        - bootstrap_mainClass
+        - bs_leftClass
+        - bs_mainClass
 
       2clr:
-        - bootstrap_mainClass
-        - bootstrap_rightClass
+        - bs_mainClass
+        - bs_rightClass
 
       3cl:
-        - bootstrap_leftClass
-        - bootstrap_mainClass
-        - bootstrap_rightClass
+        - bs_leftClass
+        - bs_mainClass
+        - bs_rightClass
 
   replace_css_classes:
       invisible: sr-only

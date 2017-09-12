@@ -9,6 +9,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace ContaoBootstrap\Layout\View\Template;
 
 use ContaoBootstrap\Core\View\Template\AbstractParseModifier;
@@ -43,7 +45,7 @@ class ReplaceCssClassesModifier extends AbstractParseModifier
     /**
      * {@inheritdoc}
      */
-    public function supports($templateName)
+    public function supports(string $templateName): bool
     {
         if (empty($this->cssClasses)) {
             return false;
@@ -55,7 +57,7 @@ class ReplaceCssClassesModifier extends AbstractParseModifier
     /**
      * {@inheritdoc}
      */
-    public function parse($buffer, $templateName)
+    public function parse(string $buffer, string $templateName): string
     {
         $classes = array_map(
             function ($class) {

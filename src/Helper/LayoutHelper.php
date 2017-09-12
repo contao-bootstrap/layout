@@ -9,8 +9,11 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace ContaoBootstrap\Layout\Helper;
 
+use Contao\FrontendTemplate;
 use Contao\LayoutModel;
 use Netzmacht\Html\Attributes;
 
@@ -19,7 +22,7 @@ use Netzmacht\Html\Attributes;
  *
  * @package ContaoBootstrap\Layout\Helper
  */
-class LayoutHelper
+final class LayoutHelper
 {
     const LEFT      = 'left';
     const RIGHT     = 'right';
@@ -74,10 +77,10 @@ class LayoutHelper
     /**
      * Construct.
      *
-     * @param \FrontendTemplate $template   Frontend page template.
-     * @param LayoutModel       $pageLayout Layout model.
+     * @param FrontendTemplate $template   Frontend page template.
+     * @param LayoutModel      $pageLayout Layout model.
      */
-    protected function __construct($template, $pageLayout)
+    protected function __construct(FrontendTemplate $template, LayoutModel $pageLayout)
     {
         $this->template = $template;
         $this->layout   = $pageLayout;
@@ -88,11 +91,11 @@ class LayoutHelper
     /**
      * Instantiate helper for frontend page template.
      *
-     * @param \FrontendTemplate $template Frontend page template.
+     * @param FrontendTemplate $template Frontend page template.
      *
      * @return static
      */
-    public static function forTemplate(\FrontendTemplate $template)
+    public static function forTemplate(FrontendTemplate $template): self
     {
         // For simplicity in the template, just let it here.
         $layout = \Controller::getContainer()->get('contao_bootstrap.environment')->getLayout();
@@ -105,9 +108,9 @@ class LayoutHelper
      *
      * @return bool
      */
-    public function isBootstrapLayout()
+    public function isBootstrapLayout(): bool
     {
-        return ($this->layout && $this->layout->layoutType == 'bootstrap');
+        return ($this->layout && $this->layout->layoutType === 'bootstrap');
     }
 
     /**
@@ -118,7 +121,7 @@ class LayoutHelper
      *
      * @return Attributes
      */
-    public function getAttributes($sectionId, $inside = false)
+    public function getAttributes(string $sectionId, bool $inside = false): Attributes
     {
         $attributes = new Attributes();
 
@@ -158,7 +161,7 @@ class LayoutHelper
      *
      * @return bool
      */
-    public function isGridActive()
+    public function isGridActive(): bool
     {
         return $this->layout->cols != '1cl' && $this->layout->cols != '';
     }
@@ -168,7 +171,7 @@ class LayoutHelper
      *
      * @return void
      */
-    private function initialize()
+    private function initialize(): void
     {
         if (!$this->isBootstrapLayout()) {
             return;
@@ -209,7 +212,7 @@ class LayoutHelper
      *
      * @return void
      */
-    private function addSchemaAttributes($sectionId, $inside, Attributes $attributes)
+    private function addSchemaAttributes(string $sectionId, bool $inside, Attributes $attributes): void
     {
         if ($inside) {
             return;

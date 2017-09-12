@@ -9,19 +9,20 @@
  *
  */
 
-namespace ContaoBootstrap\Layout\DataContainer;
+declare(strict_types=1);
+
+namespace ContaoBootstrap\Layout\Listener\Dca;
 
 use Contao\DataContainer;
 use ContaoBootstrap\Core\Config;
 use Doctrine\DBAL\Connection;
-use MultiColumnWizard;
 
 /**
  * Dca Helper class for tl_layout.
  *
  * @package Netzmacht\Bootstrap\DataContainer
  */
-class Layout
+final class LayoutDcaListener
 {
     /**
      * Bootstrap config.
@@ -56,7 +57,7 @@ class Layout
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function setDefaultViewPort()
+    public function setDefaultViewPort(): void
     {
         $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport']['default'] = $this->config->get('layout.viewport', '');
     }
@@ -64,11 +65,11 @@ class Layout
     /**
      * Disable contao framework.
      *
-     * @param \DataContainer $dataContainer Data container driver.
+     * @param DataContainer $dataContainer Data container driver.
      *
      * @return void
      */
-    public function disableFramework(\DataContainer $dataContainer)
+    public function disableFramework(DataContainer $dataContainer): void
     {
         if ($dataContainer->activeRecord->layoutType === 'bootstrap' && $dataContainer->activeRecord->framework) {
             $dataContainer->activeRecord->framework = [];

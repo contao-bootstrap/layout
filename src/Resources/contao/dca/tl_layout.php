@@ -14,12 +14,12 @@
  */
 
 $GLOBALS['TL_DCA']['tl_layout']['config']['onload_callback'][] = [
-    'contao_bootstrap.layout.dca.layout',
+    'contao_bootstrap.layout.listener.layout_dca',
     'setDefaultViewport'
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['config']['onsubmit_callback'][] = [
-    'contao_bootstrap.layout.dca.layout',
+    'contao_bootstrap.layout.listener.layout_dca',
     'disableFramework'
 ];
 

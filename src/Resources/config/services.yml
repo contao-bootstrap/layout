@@ -10,7 +10,7 @@ services:
     tags:
       - { name: contao_bootstrap.view.template_modifier }
 
-  contao_bootstrap.layout.dca.layout:
+  contao_bootstrap.layout.listener.layout_dca:
     class: ContaoBootstrap\Layout\DataContainer\Layout
     arguments:
       - '@contao_bootstrap.config'

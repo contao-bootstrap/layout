@@ -19,10 +19,10 @@
         "source":"https://github.com/contao-bootstrap/layout"
     },
     "require":{
-        "php":">=7.0",
+        "php":">=7.1",
         "contao/core-bundle": "~4.4",
         "contao-bootstrap/core": "~2.0@dev",
-        "netzmacht/html": "~1",
+        "netzmacht/html": "~2.0@beta",
         "phpspec/phpspec": "^4.0"
     },
     "require-dev": {

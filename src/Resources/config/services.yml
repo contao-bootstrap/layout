@@ -11,7 +11,7 @@ services:
       - { name: contao_bootstrap.view.template_modifier }
 
   contao_bootstrap.layout.listener.layout_dca:
-    class: ContaoBootstrap\Layout\DataContainer\Layout
+    class: ContaoBootstrap\Layout\Listener\Dca\LayoutDcaListener
     arguments:
       - '@contao_bootstrap.config'
       - '@database_connection'

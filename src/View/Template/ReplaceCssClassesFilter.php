@@ -14,15 +14,24 @@ declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\View\Template;
 
-use ContaoBootstrap\Core\View\Template\AbstractParseModifier;
+use ContaoBootstrap\Core\View\Template\Filter\PostRenderFilter;
 
 /**
  * Class Modifier stores the replace css classes hook.
  *
  * @package ContaoBootstrap\Layout\Templates
  */
-class ReplaceCssClassesModifier extends AbstractParseModifier
+class ReplaceCssClassesFilter implements PostRenderFilter
 {
+    /**
+     * List of supported template names.
+     *
+     * It's allowed to wildcard a template name pattern, e.g. fe_*.
+     *
+     * @var array
+     */
+    private $templateNames = [];
+
     /**
      * Css class replacements.
      *
@@ -38,9 +47,8 @@ class ReplaceCssClassesModifier extends AbstractParseModifier
      */
     public function __construct(array $templateNames, array $cssClasses)
     {
-        parent::__construct($templateNames);
-
-        $this->cssClasses = $cssClasses;
+        $this->templateNames = $templateNames;
+        $this->cssClasses    = $cssClasses;
     }
 
     /**
@@ -48,17 +56,25 @@ class ReplaceCssClassesModifier extends AbstractParseModifier
      */
     public function supports(string $templateName): bool
     {
-        if (empty($this->cssClasses)) {
-            return false;
+        foreach ($this->templateNames as $supported) {
+            if ($templateName === $supported) {
+                return true;
+            }
+
+            if (substr($supported, -1) === '*'
+                && 0 == strcasecmp(substr($supported, 0, -1), substr($templateName, 0, (strlen($supported) - 1)))
+            ) {
+                return true;
+            }
         }
 
-        return parent::supports($templateName);
+        return false;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function parse(string $buffer, string $templateName): string
+    public function filter(string $buffer, string $templateName): string
     {
         $classes = array_map(
             function ($class) {

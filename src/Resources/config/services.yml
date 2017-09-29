@@ -1,14 +1,14 @@
 parameters:
-  contao_bootstrap.layout.view.replace_css_classes_modifier.templates: ['fe_*']
+  contao_bootstrap.layout.view.template.filter.replace_css_classes.templates: ['fe_*']
 
 services:
-  contao_bootstrap.layout.view.replace_css_classes_modifier:
-    class: ContaoBootstrap\Layout\View\Template\ReplaceCssClassesModifier
+  contao_bootstrap.layout.view.template.filter.replace_css_classes:
+    class: ContaoBootstrap\Layout\View\Template\ReplaceCssClassesFilter
     arguments:
-      - '%contao_bootstrap.layout.view.replace_css_classes_modifier.templates%'
+      - '%contao_bootstrap.layout.view.template.filter.replace_css_classes.templates%'
       - "@=container.get('contao_bootstrap.config').get('layout.replace_css_classes')"
     tags:
-      - { name: contao_bootstrap.view.template_modifier }
+      - { name: contao_bootstrap.post_render_filter }
 
   contao_bootstrap.layout.listener.layout_dca:
     class: ContaoBootstrap\Layout\Listener\Dca\LayoutDcaListener

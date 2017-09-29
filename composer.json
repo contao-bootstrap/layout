@@ -21,7 +21,7 @@
     "require":{
         "php":">=7.1",
         "contao/core-bundle": "~4.4",
-        "contao-bootstrap/core": "~2.0@dev",
+        "contao-bootstrap/core": "~2.0@beta",
         "netzmacht/html": "~2.0@beta",
         "phpspec/phpspec": "^4.0"
     },

@@ -43,3 +43,13 @@ layout:
       invisible: sr-only
       float_left: pull-left
       float_right: pull-right
+
+  filters:
+    replace_css_classes_templates:
+      - 'fe_*'
+
+    replace_images_classes_templates:
+      - 'ce_*'
+
+    replace_table_classes_templates:
+      - 'ce_table*'

@@ -14,24 +14,13 @@ declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\View\Template;
 
-use ContaoBootstrap\Core\View\Template\Filter\PostRenderFilter;
-
 /**
  * Class Modifier stores the replace css classes hook.
  *
  * @package ContaoBootstrap\Layout\Templates
  */
-class ReplaceCssClassesFilter implements PostRenderFilter
+final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
 {
-    /**
-     * List of supported template names.
-     *
-     * It's allowed to wildcard a template name pattern, e.g. fe_*.
-     *
-     * @var array
-     */
-    private $templateNames = [];
-
     /**
      * Css class replacements.
      *
@@ -47,28 +36,9 @@ class ReplaceCssClassesFilter implements PostRenderFilter
      */
     public function __construct(array $templateNames, array $cssClasses)
     {
-        $this->templateNames = $templateNames;
-        $this->cssClasses    = $cssClasses;
-    }
+        parent::__construct($templateNames);
 
-    /**
-     * {@inheritdoc}
-     */
-    public function supports(string $templateName): bool
-    {
-        foreach ($this->templateNames as $supported) {
-            if ($templateName === $supported) {
-                return true;
-            }
-
-            if (substr($supported, -1) === '*'
-                && 0 == strcasecmp(substr($supported, 0, -1), substr($templateName, 0, (strlen($supported) - 1)))
-            ) {
-                return true;
-            }
-        }
-
-        return false;
+        $this->cssClasses = $cssClasses;
     }
 
     /**

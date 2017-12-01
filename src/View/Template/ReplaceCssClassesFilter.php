@@ -22,47 +22,32 @@ namespace ContaoBootstrap\Layout\View\Template;
 final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
 {
     /**
-     * Css class replacements.
-     *
-     * @var array
-     */
-    private $cssClasses;
-
-    /**
-     * ReplaceCssClassesModifier constructor.
-     *
-     * @param array $templateNames Supported template names.
-     * @param array $cssClasses    Css class replacements.
-     */
-    public function __construct(array $templateNames, array $cssClasses)
-    {
-        parent::__construct($templateNames);
-
-        $this->cssClasses = $cssClasses;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function filter(string $buffer, string $templateName): string
     {
+        $cssClasses = $this->getEnvironment()->getConfig()->get('layout.replace_css_classes');
+        if (!is_array($cssClasses)) {
+            return $buffer;
+        }
+
         $classes = array_map(
             function ($class) {
                 return preg_quote($class, '~');
             },
-            array_keys($this->cssClasses)
+            array_keys($cssClasses)
         );
 
         $search = sprintf('~class="([^"]*(%s)[^"]*)"~', implode('|', $classes));
         $buffer = preg_replace_callback(
             $search,
-            function ($matches) {
+            function ($matches) use ($cssClasses) {
                 $classes = explode(' ', $matches[1]);
                 $classes = array_filter($classes);
 
                 foreach ($classes as $index => $class) {
-                    if (array_key_exists($class, $this->cssClasses)) {
-                        $classes[$index] = $this->cssClasses[$class];
+                    if (array_key_exists($class, $cssClasses)) {
+                        $classes[$index] = $cssClasses[$class];
                     }
                 }
 

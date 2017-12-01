@@ -13,6 +13,8 @@
 
 namespace ContaoBootstrap\Layout\View\Template;
 
+use ContaoBootstrap\Core\Environment;
+
 /**
  * Class AbstractFilter
  *
@@ -21,22 +23,39 @@ namespace ContaoBootstrap\Layout\View\Template;
 abstract class AbstractFilter
 {
     /**
-     * List of supported template names.
+     * Bootstrap environment.
      *
-     * It's allowed to wildcard a template name pattern, e.g. fe_*.
-     *
-     * @var array
+     * @var Environment
      */
-    private $templateNames = [];
+    private $environment;
+
+    /**
+     * The config key for the templates.
+     *
+     * @var string
+     */
+    private $templateConfigKey;
 
     /**
      * AbstractFilter constructor.
      *
-     * @param array $templateNames List of templates name patterns.
+     * @param Environment $environment       The bootstrap environment.
+     * @param string      $templateConfigKey The templates config key.
      */
-    public function __construct(array $templateNames)
+    public function __construct(Environment $environment, string $templateConfigKey)
     {
-        $this->templateNames = $templateNames;
+        $this->environment       = $environment;
+        $this->templateConfigKey = $templateConfigKey;
+    }
+
+    /**
+     * Get environment.
+     *
+     * @return Environment
+     */
+    protected function getEnvironment(): Environment
+    {
+        return $this->environment;
     }
 
     /**
@@ -48,7 +67,13 @@ abstract class AbstractFilter
      */
     protected function isTemplateNameSupported(string $templateName): bool
     {
-        foreach ($this->templateNames as $supported) {
+        $templateNames = $this->getEnvironment()->getConfig()->get($this->templateConfigKey);
+
+        if (!is_array($templateNames)) {
+            return false;
+        }
+
+        foreach ($templateNames as $supported) {
             if ($templateName === $supported) {
                 return true;
             }

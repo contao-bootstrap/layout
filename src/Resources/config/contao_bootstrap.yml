@@ -41,8 +41,8 @@ layout:
 
   replace_css_classes:
       invisible: sr-only
-      float_left: pull-left
-      float_right: pull-right
+      float_left: float-left
+      float_right: float-right
 
   filters:
     replace_css_classes_templates:

@@ -1,26 +1,29 @@
 <?php
 
 /**
+ * Contao Bootstrap Layout.
+ *
  * @package    contao-bootstrap
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2014-2015 netzmacht creative David Molineus
+ * @copyright  2014-2017 netzmacht creative David Molineus
  * @license    LGPL 3.0
  * @filesource
- *
  */
 
-namespace Netzmacht\Bootstrap\Layout\Helper;
+declare(strict_types=1);
 
-use Netzmacht\Contao\FlexibleSections\Helper as FlexibleSections;
-use Netzmacht\Bootstrap\Core\Bootstrap;
+namespace ContaoBootstrap\Layout\Helper;
+
+use Contao\FrontendTemplate;
+use Contao\LayoutModel;
 use Netzmacht\Html\Attributes;
 
 /**
  * LayoutHelper is a template helper for the fe_bootstrap template.
  *
- * @package Netzmacht\Bootstrap\Layout\Helper
+ * @package ContaoBootstrap\Layout\Helper
  */
-class LayoutHelper
+final class LayoutHelper
 {
     const LEFT      = 'left';
     const RIGHT     = 'right';
@@ -35,76 +38,70 @@ class LayoutHelper
      *
      * @var \FrontendTemplate
      */
-    protected $template;
+    private $template;
 
     /**
      * Main css class.
      *
      * @var string
      */
-    protected $mainClass;
+    private $mainClass;
 
     /**
      * Left css class.
      *
      * @var string
      */
-    protected $leftClass;
+    private $leftClass;
 
     /**
      * Right css class.
      *
      * @var string
      */
-    protected $rightClass;
+    private $rightClass;
 
     /**
      * Use grid column system.
      *
      * @var bool
      */
-    protected $useGrid;
+    private $useGrid;
 
     /**
-     * Flexible section helper.
+     * Page layout.
      *
-     * @var FlexibleSections
+     * @var LayoutModel
      */
-    protected $flexibleSections;
+    private $layout;
 
     /**
      * Construct.
      *
-     * @param \FrontendTemplate $template Frontend page template.
+     * @param FrontendTemplate $template   Frontend page template.
+     * @param LayoutModel      $pageLayout Layout model.
      */
-    protected function __construct($template)
+    protected function __construct(FrontendTemplate $template, LayoutModel $pageLayout)
     {
-        $this->template         = $template;
-        $this->flexibleSections = new FlexibleSections($template);
+        $this->template = $template;
+        $this->layout   = $pageLayout;
 
         $this->initialize();
     }
 
     /**
-     * Get page layout.
-     *
-     * @return \LayoutModel|null
-     */
-    public static function getPageLayout()
-    {
-        return Bootstrap::getPageLayout();
-    }
-
-    /**
      * Instantiate helper for frontend page template.
      *
-     * @param \FrontendTemplate $template Frontend page template.
+     * @param FrontendTemplate $template Frontend page template.
      *
      * @return static
      */
-    public static function forTemplate(\FrontendTemplate $template)
+    public static function forTemplate(FrontendTemplate $template): self
     {
-        return new static($template);
+        // For simplicity in the template, just let it here.
+        $layout = \Controller::getContainer()->get('contao_bootstrap.environment')->getLayout();
+
+        return new static($template, $layout);
     }
 
     /**
@@ -112,11 +109,9 @@ class LayoutHelper
      *
      * @return bool
      */
-    public static function isBootstrapLayout()
+    public function isBootstrapLayout(): bool
     {
-        $layout = static::getPageLayout();
-
-        return ($layout && $layout->layoutType == 'bootstrap');
+        return ($this->layout && $this->layout->layoutType === 'bootstrap');
     }
 
     /**
@@ -127,9 +122,8 @@ class LayoutHelper
      *
      * @return Attributes
      */
-    public function getAttributes($sectionId, $inside = false)
+    public function getAttributes(string $sectionId, bool $inside = false): Attributes
     {
-        $layout     = static::getPageLayout();
         $attributes = new Attributes();
 
         if ($inside) {
@@ -139,15 +133,15 @@ class LayoutHelper
         }
 
         if (in_array($sectionId, array(static::FOOTER, static::HEADER))) {
-            $key = sprintf('bootstrap_%sClass', $sectionId);
+            $key = sprintf('bs_%sClass', $sectionId);
 
-            if ($layout->$key) {
-                $attributes->addClass($layout->$key);
+            if ($this->layout->$key) {
+                $attributes->addClass($this->layout->$key);
             }
         } elseif (in_array($sectionId, array(static::CONTAINER, static::WRAPPER))) {
-            $class = $layout->bootstrap_containerClass;
+            $class = $this->layout->bs_containerClass;
 
-            if ($class && $layout->bootstrap_containerElement === $sectionId) {
+            if ($class && $this->layout->bs_containerElement === $sectionId) {
                 $attributes->addClass($class);
             }
         } elseif (static::isGridActive()) {
@@ -158,6 +152,8 @@ class LayoutHelper
             }
         }
 
+        $this->addSchemaAttributes($sectionId, $inside, $attributes);
+
         return $attributes;
     }
 
@@ -166,38 +162,9 @@ class LayoutHelper
      *
      * @return bool
      */
-    public function isGridActive()
+    public function isGridActive(): bool
     {
-        $layout = static::getPageLayout();
-
-        return $layout->cols != '1cl' && $layout->cols != '';
-    }
-
-    /**
-     * Get custom section.
-     *
-     * @param string $sectionId   Section id.
-     * @param string $template    Section template.
-     * @param bool   $renderEmpty Force section being rendered when being empty.
-     *
-     * @return string
-     */
-    public function getCustomSection($sectionId, $template = null, $renderEmpty = false)
-    {
-        return $this->flexibleSections->getCustomSection($sectionId, $template, $renderEmpty);
-    }
-
-    /**
-     * Get custom sections.
-     *
-     * @param string $position Section position.
-     * @param string $template Block template.
-     *
-     * @return string
-     */
-    public function getCustomSections($position, $template = 'block_sections')
-    {
-        return $this->flexibleSections->getCustomSections($position, $template);
+        return $this->layout->cols != '1cl' && $this->layout->cols != '';
     }
 
     /**
@@ -205,34 +172,27 @@ class LayoutHelper
      *
      * @return void
      */
-    private function initialize()
+    private function initialize(): void
     {
         if (!$this->isBootstrapLayout()) {
             return;
         }
 
-        $layout = static::getPageLayout();
-
-        // only apply viewport if not contao 3.3 is used
-        if ($layout->viewport && !$this->template->viewport && version_compare(VERSION, '3.3', '<')) {
-            $this->template->viewport = sprintf('<meta name="viewport" content="%s">', $layout->viewport);
-        }
-
-        switch ($layout->cols) {
+        switch ($this->layout->cols) {
             case '2cll':
-                $this->leftClass = $layout->bootstrap_leftClass;
-                $this->mainClass = $layout->bootstrap_mainClass;
+                $this->leftClass = $this->layout->bs_leftClass;
+                $this->mainClass = $this->layout->bs_mainClass;
                 break;
 
             case '2clr':
-                $this->rightClass = $layout->bootstrap_rightClass;
-                $this->mainClass  = $layout->bootstrap_mainClass;
+                $this->rightClass = $this->layout->bs_rightClass;
+                $this->mainClass  = $this->layout->bs_mainClass;
                 break;
 
             case '3cl':
-                $this->leftClass  = $layout->bootstrap_leftClass;
-                $this->rightClass = $layout->bootstrap_rightClass;
-                $this->mainClass  = $layout->bootstrap_mainClass;
+                $this->leftClass  = $this->layout->bs_leftClass;
+                $this->rightClass = $this->layout->bs_rightClass;
+                $this->mainClass  = $this->layout->bs_mainClass;
                 break;
 
             default:
@@ -242,5 +202,37 @@ class LayoutHelper
         }
 
         $this->useGrid = true;
+    }
+
+    /**
+     * Add the schema attributes.
+     *
+     * @param string     $sectionId  Section id.
+     * @param bool       $inside     If true no schema attributes are added.
+     * @param Attributes $attributes Section attributes.
+     *
+     * @return void
+     */
+    private function addSchemaAttributes(string $sectionId, bool $inside, Attributes $attributes): void
+    {
+        if ($inside) {
+            return;
+        }
+
+        switch ($sectionId) {
+            case static::MAIN:
+                $attributes->setAttribute('itemscope', true);
+                $attributes->setAttribute('itemtype', 'http://schema.org/WebPageElement');
+                $attributes->setAttribute('itemprop', 'mainContentOfPage');
+                break;
+
+            case static::HEADER:
+                $attributes->setAttribute('itemscope', true);
+                $attributes->setAttribute('itemtype', 'http://schema.org/WPHeader');
+                break;
+
+            default:
+                // Do nothing.
+        }
     }
 }

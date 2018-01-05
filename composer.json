@@ -40,14 +40,14 @@
             "transifex": {
                 "project": "contao-bootstrap",
                 "prefix": "layout-",
-                "languages_cto": "src/Resources/languages",
+                "languages_cto": "src/Resources/contao/languages",
                 "languages_tx": ".tx"
             }
         },
         "branch-alias": {
-            "dev-master": "1.0.x-dev",
-            "dev-develop": "1.1.x-dev",
-            "dev-release/2.0.0": "2.0.x-dev"
+            "dev-master": "2.0.x-dev",
+            "dev-develop": "2.1.x-dev",
+            "dev-support/1.x": "1.0.x-dev"
         },
         "contao-manager-plugin": "ContaoBootstrap\\Layout\\ContaoManager\\Plugin"
     }

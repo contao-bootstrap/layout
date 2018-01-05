@@ -1,59 +1,53 @@
 <?php
 
 /**
+ * Contao Bootstrap Layout.
+ *
  * @package    contao-bootstrap
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2014-2015 netzmacht creative David Molineus
+ * @copyright  2014-2017 netzmacht creative David Molineus
  * @license    LGPL 3.0
  * @filesource
- *
  */
 
-namespace Netzmacht\Bootstrap\Layout\Templates;
+declare(strict_types=1);
 
-use Netzmacht\Bootstrap\Core\Bootstrap;
+namespace ContaoBootstrap\Layout\View\Template;
 
 /**
  * Class Modifier stores the replace css classes hook.
  *
- * @package Netzmacht\Bootstrap\Layout\Templates
+ * @package ContaoBootstrap\Layout\Templates
  */
-class Modifier
+final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
 {
     /**
-     * Replace css classes.
-     *
-     * @param string $buffer Output buffer.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public static function replaceCssClasses($buffer)
+    public function filter(string $buffer, string $templateName): string
     {
-        $replaceClasses = Bootstrap::getConfigVar('layout.replace-css-classes');
-
-        if (empty($replaceClasses)) {
+        $cssClasses = $this->getEnvironment()->getConfig()->get('layout.replace_css_classes');
+        if (!is_array($cssClasses)) {
             return $buffer;
         }
 
-        $classes = array_keys($replaceClasses);
         $classes = array_map(
             function ($class) {
                 return preg_quote($class, '~');
             },
-            $classes
+            array_keys($cssClasses)
         );
 
         $search = sprintf('~class="([^"]*(%s)[^"]*)"~', implode('|', $classes));
-
         $buffer = preg_replace_callback(
             $search,
-            function ($matches) use ($replaceClasses) {
+            function ($matches) use ($cssClasses) {
                 $classes = explode(' ', $matches[1]);
                 $classes = array_filter($classes);
 
                 foreach ($classes as $index => $class) {
-                    if (array_key_exists($class, $replaceClasses)) {
-                        $classes[$index] = $replaceClasses[$class];
+                    if (array_key_exists($class, $cssClasses)) {
+                        $classes[$index] = $cssClasses[$class];
                     }
                 }
 

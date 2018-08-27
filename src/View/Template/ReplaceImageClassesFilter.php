@@ -6,13 +6,14 @@
  * @package    contao-bootstrap
  * @subpackage Layout
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
+ * @copyright  2017-2018 netzmacht David Molineus. All rights reserved.
+ * @license    LGPL 3.0-or-later
  * @filesource
  */
 
 namespace ContaoBootstrap\Layout\View\Template;
 
+use Contao\StringUtil;
 use Contao\Template;
 use Netzmacht\Html\Attributes;
 
@@ -33,7 +34,7 @@ class ReplaceImageClassesFilter extends AbstractPreRenderFilter
         }
 
         $cssClasses   = $template->class;
-        $cssClasses   = trimsplit(' ', $cssClasses);
+        $cssClasses   = StringUtil::trimsplit(' ', $cssClasses);
         $imageClasses = array();
 
         foreach ($cssClasses as $index => $cssClass) {

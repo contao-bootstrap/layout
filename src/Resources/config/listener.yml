@@ -1,0 +1,6 @@
+services:
+  ContaoBootstrap\Layout\Listener\Hook\PageTemplateListener:
+    arguments:
+      - '@contao_bootstrap.environment'
+    tags:
+    - { name: 'contao.hook', hook: 'parseTemplate' }

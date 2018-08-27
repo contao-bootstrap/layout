@@ -2,6 +2,22 @@
 Changelog
 =========
 
+2.0.2 (2018-08-27)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.1...2.0.2)
+
+ - Do not require that bootstrap environment is public.
+
+
+2.0.1 (2018-07-24)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.0...2.0.1)
+
+ - Update translations
+ 
+
 2.0.0 (2018-01-05)
 ------------------
 

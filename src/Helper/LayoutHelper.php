@@ -5,8 +5,8 @@
  *
  * @package    contao-bootstrap
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2014-2017 netzmacht creative David Molineus
- * @license    LGPL 3.0
+ * @copyright  2014-2018 netzmacht creative David Molineus
+ * @license    LGPL 3.0-or-later
  * @filesource
  */
 
@@ -98,10 +98,7 @@ final class LayoutHelper
      */
     public static function forTemplate(FrontendTemplate $template): self
     {
-        // For simplicity in the template, just let it here.
-        $layout = \Controller::getContainer()->get('contao_bootstrap.environment')->getLayout();
-
-        return new static($template, $layout);
+        return new static($template, $template->bootstrapEnvironment->getLayout());
     }
 
     /**

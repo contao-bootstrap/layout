@@ -2,6 +2,14 @@
 Changelog
 =========
 
+2.0.3 (2018-09-06)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.2...2.0.3)
+
+ - Update translations
+ - Fix incompatibility with Contao 4.4
+
 2.0.2 (2018-08-27)
 ------------------
 

@@ -2,8 +2,10 @@
 Changelog
 =========
 
-[Unreleased]
-------------
+2.0.4 (2019-11-15)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.3...2.0.4)
 
 ### Fixed
 

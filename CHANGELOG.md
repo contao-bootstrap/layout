@@ -2,6 +2,13 @@
 Changelog
 =========
 
+[Unreleased]
+------------
+
+### Fixed
+
+ - Add img css class to picture image instead of to attributes ([#15](https://github.com/contao-bootstrap/layout/issues/15))
+
 2.0.3 (2018-09-06)
 ------------------
 

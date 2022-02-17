@@ -103,6 +103,6 @@
   <?php $this->endblock(); ?>
 
   <?= $this->mootools ?>
-<?= $this->jsonLdScripts ?>
+ <?= $this->jsonLdScripts ?>
 </body>
 </html>

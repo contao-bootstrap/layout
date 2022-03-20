@@ -30,14 +30,14 @@ final class LayoutDcaListener
      *
      * @var Config
      */
-    private $config;
+    private Config $config;
 
     /**
      * Database connection.
      *
      * @var Connection
      */
-    private $connection;
+    private Connection $connection;
 
     /**
      * Layout constructor.
@@ -77,7 +77,7 @@ final class LayoutDcaListener
 
             $statement = $this->connection->prepare('UPDATE tl_layout SET framework = \'\' WHERE id=?');
             $statement->bindValue(1, $dataContainer->id);
-            $statement->execute();
+            $statement->executeStatement();
         }
     }
 }

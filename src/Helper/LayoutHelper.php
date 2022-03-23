@@ -38,42 +38,42 @@ final class LayoutHelper
      *
      * @var \FrontendTemplate
      */
-    private $template;
+    private FrontendTemplate $template;
 
     /**
      * Main css class.
      *
      * @var string
      */
-    private $mainClass;
+    private string $mainClass;
 
     /**
      * Left css class.
      *
      * @var string
      */
-    private $leftClass;
+    private string $leftClass;
 
     /**
      * Right css class.
      *
      * @var string
      */
-    private $rightClass;
+    private string $rightClass;
 
     /**
      * Use grid column system.
      *
      * @var bool
      */
-    private $useGrid;
+    private bool $useGrid;
 
     /**
      * Page layout.
      *
      * @var LayoutModel
      */
-    private $layout;
+    private LayoutModel $layout;
 
     /**
      * Construct.

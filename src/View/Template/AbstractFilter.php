@@ -27,14 +27,14 @@ abstract class AbstractFilter
      *
      * @var Environment
      */
-    private $environment;
+    private Environment $environment;
 
     /**
      * The config key for the templates.
      *
      * @var string
      */
-    private $templateConfigKey;
+    private string $templateConfigKey;
 
     /**
      * AbstractFilter constructor.

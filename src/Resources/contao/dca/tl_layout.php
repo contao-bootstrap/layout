@@ -43,7 +43,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['template']['eval'] = [
 $GLOBALS['TL_DCA']['tl_layout']['fields']['framework']['default'] = [];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_headerClass'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_headerClass'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => ['tl_class' => 'w50'],
@@ -51,7 +50,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_headerClass'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_footerClass'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_footerClass'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => ['tl_class' => 'w50'],
@@ -59,7 +57,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_footerClass'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_mainClass'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_mainClass'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => ['tl_class' => 'w50'],
@@ -67,7 +64,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_mainClass'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_leftClass'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_leftClass'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => ['tl_class' => 'w50'],
@@ -75,7 +71,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_leftClass'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_rightClass'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_rightClass'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => ['tl_class' => 'w50'],
@@ -83,7 +78,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_rightClass'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['viewport'],
     'exclude'                 => true,
     'default'                 => '',
     'inputType'               => 'text',
@@ -92,7 +86,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['viewport'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_containerElement'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_containerElement'],
     'exclude'                 => true,
     'inputType'               => 'select',
     'options'                 => ['container', 'wrapper'],
@@ -101,7 +94,6 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_containerElement'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_layout']['fields']['bs_containerClass'] = [
-    'label'                   => &$GLOBALS['TL_LANG']['tl_layout']['bs_containerClass'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => ['tl_class' => 'w50'],

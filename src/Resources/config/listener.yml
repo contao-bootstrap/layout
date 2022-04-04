@@ -1,0 +1,5 @@
+services:
+  ContaoBootstrap\Layout\Listener\Hook\PageTemplateListener:
+    public: true
+    arguments:
+      - '@contao_bootstrap.environment'

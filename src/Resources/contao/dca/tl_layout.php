@@ -2,26 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Bootstrap Layout.
- *
- * @filesource
- */
-
-/*
- * Config
- */
-
-$GLOBALS['TL_DCA']['tl_layout']['config']['onload_callback'][] = [
-    'contao_bootstrap.layout.listener.layout_dca',
-    'setDefaultViewport',
-];
-
-$GLOBALS['TL_DCA']['tl_layout']['config']['onsubmit_callback'][] = [
-    'contao_bootstrap.layout.listener.layout_dca',
-    'disableFramework',
-];
-
 /*
  * Palettes
  */

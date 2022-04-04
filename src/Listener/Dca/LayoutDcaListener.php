@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\Listener\Dca;
 
+use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\DataContainer;
 use ContaoBootstrap\Core\Config;
 use Doctrine\DBAL\Connection;
@@ -33,6 +34,7 @@ final class LayoutDcaListener
     /**
      * Set the default viewport.
      *
+     * @Callback(table="tl_layout", target="config.onload")
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function setDefaultViewPort(): void
@@ -43,6 +45,7 @@ final class LayoutDcaListener
     /**
      * Disable contao framework.
      *
+     * @Callback(table="tl_layout", target="config.onsubmit")
      * @param DataContainer $dataContainer Data container driver.
      */
     public function disableFramework(DataContainer $dataContainer): void

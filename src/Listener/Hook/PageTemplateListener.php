@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\Listener\Hook;
 
+use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Template;
 use ContaoBootstrap\Core\Environment;
 
@@ -28,6 +29,8 @@ final class PageTemplateListener
      * Handle the parse template hook.
      *
      * @param Template $template The template being parsed.
+     *
+     * @Hook("parseTemplate")
      */
     public function onParseTemplate(Template $template): void
     {

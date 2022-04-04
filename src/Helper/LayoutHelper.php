@@ -1,15 +1,5 @@
 <?php
 
-/**
- * Contao Bootstrap Layout.
- *
- * @package    contao-bootstrap
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2014-2018 netzmacht creative David Molineus
- * @license    LGPL 3.0-or-later
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\Helper;
@@ -18,60 +8,49 @@ use Contao\FrontendTemplate;
 use Contao\LayoutModel;
 use Netzmacht\Html\Attributes;
 
+use function in_array;
+use function sprintf;
+
 /**
  * LayoutHelper is a template helper for the fe_bootstrap template.
- *
- * @package ContaoBootstrap\Layout\Helper
  */
 final class LayoutHelper
 {
-    const LEFT      = 'left';
-    const RIGHT     = 'right';
-    const MAIN      = 'main';
-    const HEADER    = 'header';
-    const FOOTER    = 'footer';
-    const WRAPPER   = 'wrapper';
-    const CONTAINER = 'container';
+    public const LEFT      = 'left';
+    public const RIGHT     = 'right';
+    public const MAIN      = 'main';
+    public const HEADER    = 'header';
+    public const FOOTER    = 'footer';
+    public const WRAPPER   = 'wrapper';
+    public const CONTAINER = 'container';
 
     /**
      * Frontend page template.
-     *
-     * @var \FrontendTemplate
      */
     private FrontendTemplate $template;
 
     /**
      * Main css class.
-     *
-     * @var string
      */
-    private string $mainClass;
+    private string $mainClass = '';
 
     /**
      * Left css class.
-     *
-     * @var string
      */
-    private string $leftClass;
+    private string $leftClass = '';
 
     /**
      * Right css class.
-     *
-     * @var string
      */
-    private string $rightClass;
+    private string $rightClass = '';
 
     /**
      * Use grid column system.
-     *
-     * @var bool
      */
-    private bool $useGrid;
+    private bool $useGrid = false;
 
     /**
      * Page layout.
-     *
-     * @var LayoutModel
      */
     private LayoutModel $layout;
 
@@ -98,17 +77,15 @@ final class LayoutHelper
      */
     public static function forTemplate(FrontendTemplate $template): self
     {
-        return new static($template, $template->bootstrapEnvironment->getLayout());
+        return new self($template, $template->bootstrapEnvironment->getLayout());
     }
 
     /**
      * Check if page layout is a bootstrap layout.
-     *
-     * @return bool
      */
     public function isBootstrapLayout(): bool
     {
-        return ($this->layout && $this->layout->layoutType === 'bootstrap');
+        return $this->layout->layoutType === 'bootstrap';
     }
 
     /**
@@ -116,8 +93,6 @@ final class LayoutHelper
      *
      * @param string $sectionId The section id.
      * @param bool   $inside    If true the inside class is added. Otherwhise $sectionId is set as id attribute.
-     *
-     * @return Attributes
      */
     public function getAttributes(string $sectionId, bool $inside = false): Attributes
     {
@@ -129,13 +104,13 @@ final class LayoutHelper
             $attributes->setId($sectionId);
         }
 
-        if (in_array($sectionId, array(static::FOOTER, static::HEADER))) {
+        if (in_array($sectionId, [self::FOOTER, self::HEADER])) {
             $key = sprintf('bs_%sClass', $sectionId);
 
             if ($this->layout->$key) {
                 $attributes->addClass($this->layout->$key);
             }
-        } elseif (in_array($sectionId, array(static::CONTAINER, static::WRAPPER))) {
+        } elseif (in_array($sectionId, [self::CONTAINER, self::WRAPPER])) {
             $class = $this->layout->bs_containerClass;
 
             if ($class && $this->layout->bs_containerElement === $sectionId) {
@@ -156,22 +131,18 @@ final class LayoutHelper
 
     /**
      * Check if grid is active.
-     *
-     * @return bool
      */
     public function isGridActive(): bool
     {
-        return $this->layout->cols != '1cl' && $this->layout->cols != '';
+        return $this->layout->cols !== '1cl' && $this->layout->cols !== '';
     }
 
     /**
      * Initialize the helper.
-     *
-     * @return void
      */
     private function initialize(): void
     {
-        if (!$this->isBootstrapLayout()) {
+        if (! $this->isBootstrapLayout()) {
             return;
         }
 
@@ -207,8 +178,6 @@ final class LayoutHelper
      * @param string     $sectionId  Section id.
      * @param bool       $inside     If true no schema attributes are added.
      * @param Attributes $attributes Section attributes.
-     *
-     * @return void
      */
     private function addSchemaAttributes(string $sectionId, bool $inside, Attributes $attributes): void
     {
@@ -217,13 +186,13 @@ final class LayoutHelper
         }
 
         switch ($sectionId) {
-            case static::MAIN:
+            case self::MAIN:
                 $attributes->setAttribute('itemscope', true);
                 $attributes->setAttribute('itemtype', 'http://schema.org/WebPageElement');
                 $attributes->setAttribute('itemprop', 'mainContentOfPage');
                 break;
 
-            case static::HEADER:
+            case self::HEADER:
                 $attributes->setAttribute('itemscope', true);
                 $attributes->setAttribute('itemtype', 'http://schema.org/WPHeader');
                 break;

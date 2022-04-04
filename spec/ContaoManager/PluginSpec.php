@@ -1,13 +1,6 @@
 <?php
 
-/**
- * @package    contao-bootstrap
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2014-2015 netzmacht creative David Molineus
- * @license    LGPL 3.0
- * @filesource
- *
- */
+declare(strict_types=1);
 
 namespace spec\ContaoBootstrap\Layout\ContaoManager;
 
@@ -17,26 +10,26 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use ContaoBootstrap\Core\ContaoBootstrapCoreBundle;
 use ContaoBootstrap\Layout\ContaoManager\Plugin;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
-class PluginSpec extends ObjectBehavior
+/** @SuppressWarnings(PHPMD.CamelCaseMethodName) */
+final class PluginSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(Plugin::class);
     }
 
-    function it_is_a_bundle_plugin()
+    public function it_is_a_bundle_plugin(): void
     {
         $this->shouldImplement(BundlePluginInterface::class);
     }
 
-    function it_loads_after_contao_core(ParserInterface $parser)
+    public function it_loads_after_contao_core(ParserInterface $parser): void
     {
         $this->getBundles($parser)[0]->getLoadAfter()->shouldContain(ContaoCoreBundle::class);
     }
 
-    function it_loads_after_bootstrap_core(ParserInterface $parser)
+    public function it_loads_after_bootstrap_core(ParserInterface $parser): void
     {
         $this->getBundles($parser)[0]->getLoadAfter()->shouldContain(ContaoBootstrapCoreBundle::class);
     }

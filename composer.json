@@ -34,7 +34,7 @@
     "contao/core-bundle": "^4.9",
     "doctrine/dbal": "^2.11 || ^3.3",
     "netzmacht/contao-toolkit": "^3.7",
-    "netzmacht/html": "2.0",
+    "netzmacht/html": "^2.0.2",
     "symfony/config": "^4.4 || ^5.4",
     "symfony/dependency-injection": "4.4 || ^5.4",
     "symfony/http-kernel": "^4.4 || ^5.4"

@@ -5,12 +5,16 @@ Changelog
 Unreleased
 ----------
 
+### Added
+
+ - Add support for `icons.css` of the Contao css framework
+
 ### Changed
 
-- Bump minimum PHP version to 7.4
-- Bump Symfony requirements to ^4.4 or ^5.4
-- Bump Contao requirements to ^4.9 or ^4.13
-- Changed coding standard
+ - Bump minimum PHP version to 7.4
+ - Bump Symfony requirements to ^4.4 or ^5.4
+ - Bump Contao requirements to ^4.9 or ^4.13
+ - Changed coding standard
 
 2.0.4 (2019-11-15)
 ------------------

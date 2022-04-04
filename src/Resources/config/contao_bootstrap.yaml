@@ -2,10 +2,15 @@ layout:
   # default viewport value, can be changed in layout
   viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
 
-  metapalette:
-    "-style":
-      - framework
+  contao_framework_css:
+    layout.css: false
+    responsive.css: false
+    grid.css: false
+    reset.css: false
+    form.css: false
+    icons.css: true
 
+  metapalette:
     "-static":
       - static
 

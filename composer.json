@@ -33,10 +33,11 @@
     "contao-bootstrap/core": "^2.0",
     "contao/core-bundle": "^4.9",
     "doctrine/dbal": "^2.11 || ^3.3",
-    "netzmacht/html": "~2.0",
-    "symfony/config": "~4.4 || ^5.4",
-    "symfony/dependency-injection": "~4.4 || ^5.4",
-    "symfony/http-kernel": "~4.4 || ^5.4"
+    "netzmacht/contao-toolkit": "^3.7",
+    "netzmacht/html": "2.0",
+    "symfony/config": "^4.4 || ^5.4",
+    "symfony/dependency-injection": "4.4 || ^5.4",
+    "symfony/http-kernel": "^4.4 || ^5.4"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
@@ -65,7 +66,8 @@
       "contao-components/installer": false,
       "contao/manager-plugin": true,
       "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    },
+    "sort-packages": true
   },
   "extra": {
     "branch-alias": {

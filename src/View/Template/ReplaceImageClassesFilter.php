@@ -1,31 +1,19 @@
 <?php
 
-/**
- * Contao Bootstrap
- *
- * @package    contao-bootstrap
- * @subpackage Layout
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0-or-later
- * @filesource
- */
+declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\View\Template;
 
 use Contao\StringUtil;
 use Contao\Template;
 
-/**
- * Class ReplaceImageClassesFilter.
- *
- * @package ContaoBootstrap\Layout\View\Template
- */
+use function count;
+use function implode;
+use function substr;
+use function trim;
+
 class ReplaceImageClassesFilter extends AbstractPreRenderFilter
 {
-    /**
-     * {@inheritdoc}
-     */
     public function filter(Template $template): void
     {
         if (empty($template->imgSize) && empty($template->picture['img'])) {
@@ -34,7 +22,7 @@ class ReplaceImageClassesFilter extends AbstractPreRenderFilter
 
         $cssClasses   = $template->class;
         $cssClasses   = StringUtil::trimsplit(' ', $cssClasses);
-        $imageClasses = array();
+        $imageClasses = [];
 
         foreach ($cssClasses as $index => $cssClass) {
             if (substr($cssClass, 0, 4) === 'img-') {
@@ -42,20 +30,27 @@ class ReplaceImageClassesFilter extends AbstractPreRenderFilter
                 unset($cssClasses[$index]);
             }
 
-            if ($cssClass === 'rounded' || substr($cssClass, 0, 8) === 'rounded-') {
-                $imageClasses[] = $cssClass;
-                unset($cssClasses[$index]);
+            if ($cssClass !== 'rounded' && substr($cssClass, 0, 8) !== 'rounded-') {
+                continue;
             }
+
+            $imageClasses[] = $cssClass;
+            unset($cssClasses[$index]);
         }
 
-        if (count($imageClasses)) {
-            $template->class = implode(' ', $cssClasses);
-
-            if (!empty($template->picture['img'])) {
-                $picture                 = $template->picture;
-                $picture['img']['class'] = trim(($image['class'] ?? '') . ' ' . implode(' ', $imageClasses));
-                $template->picture       = $picture;
-            }
+        if (! count($imageClasses)) {
+            return;
         }
+
+        $template->class = implode(' ', $cssClasses);
+
+        if (empty($template->picture['img'])) {
+            return;
+        }
+
+        $image                   = $template->picture['img'];
+        $picture                 = $template->picture;
+        $picture['img']['class'] = trim(($image['class'] ?? '') . ' ' . implode(' ', $imageClasses));
+        $template->picture       = $picture;
     }
 }

@@ -1,37 +1,23 @@
 <?php
 
-/**
- * Contao Bootstrap Layout.
- *
- * @package    contao-bootstrap
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2014-2018 netzmacht creative David Molineus
- * @license    LGPL 3.0-or-later
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\Listener\Hook;
 
+use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Template;
 use ContaoBootstrap\Core\Environment;
 
-/**
- * PageTemplateListener adds the bootstrap environment to the page template.
- */
+use function strpos;
+
 final class PageTemplateListener
 {
     /**
      * Bootstrap environment.
-     *
-     * @var Environment
      */
-    private $environment;
+    private Environment $environment;
 
     /**
-     * PageTemplateListener constructor.
-     *
      * @param Environment $environment Bootstrap environment.
      */
     public function __construct(Environment $environment)
@@ -44,7 +30,7 @@ final class PageTemplateListener
      *
      * @param Template $template The template being parsed.
      *
-     * @return void
+     * @Hook("parseTemplate")
      */
     public function onParseTemplate(Template $template): void
     {

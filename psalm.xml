@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<psalm
+        errorLevel="3"
+        hideExternalErrors="true"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config https://getpsalm.org/schema/config"
+>
+    <projectFiles>
+        <directory name="src"/>
+    </projectFiles>
+
+    <issueHandlers>
+        <UndefinedMagicPropertyFetch>
+            <errorLevel type="suppress">
+                <referencedProperty name="Contao\LayoutModel::$bs_containerClass"/>
+                <referencedProperty name="Contao\LayoutModel::$bs_mainClass"/>
+                <referencedProperty name="Contao\LayoutModel::$bs_leftClass"/>
+                <referencedProperty name="Contao\LayoutModel::$bs_rightClass"/>
+                <referencedProperty name="Contao\LayoutModel::$bs_containerElement"/>
+                <referencedProperty name="Contao\LayoutModel::$layoutType"/>
+            </errorLevel>
+        </UndefinedMagicPropertyFetch>
+    </issueHandlers>
+
+    <universalObjectCrates>
+        <class name="Contao\FrontendTemplate"/>
+        <class name="Contao\Template"/>
+    </universalObjectCrates>
+</psalm>

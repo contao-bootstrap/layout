@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_layout']['container_legend'] = 'Container';
 
-/**
+/*
  * fields
  */
 $GLOBALS['TL_LANG']['tl_layout']['bs_headerClass'][0]       = 'Header CSS class';
@@ -39,7 +41,7 @@ $GLOBALS['TL_LANG']['tl_layout']['bs_containerElement'][1]  = 'Please choose the
 $GLOBALS['TL_LANG']['tl_layout']['bs_containerClass'][0]    = 'Container class';
 $GLOBALS['TL_LANG']['tl_layout']['bs_containerClass'][1]    = 'Insert the css class which is used for the container. You are free to use <em>container</em>, <em>container-fluid</em> or any custom class.';
 
-/**
+/*
  * values
  */
 $GLOBALS['TL_LANG']['tl_layout']['safeTpl']   = 'Available in theme';

@@ -2,6 +2,25 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+2.1.0 (2022-04-20)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.4...2.1.0)
+
+### Added
+
+ - Add support for `icons.css` of the Contao css framework
+
+### Changed
+
+ - Bump minimum PHP version to 7.4
+ - Bump Symfony requirements to ^4.4 or ^5.4
+ - Bump Contao requirements to ^4.9 or ^4.13
+ - Changed coding standard
+
 2.0.4 (2019-11-15)
 ------------------
 
@@ -34,7 +53,7 @@ Changelog
 [Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.0...2.0.1)
 
  - Update translations
- 
+
 
 2.0.0 (2018-01-05)
 ------------------
@@ -50,7 +69,7 @@ Changelog
 [Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.0-beta3...2.0.0-beta4)
 
 Implemented enhancements:
- 
+
  - Rewrite `rounded` and `rounded-*` classes to the picture element.
  - Mark dca/hook listeners as public
 
@@ -64,4 +83,4 @@ Implemented enhancements:
 
  - Add table and image class replacements.
  - Rewrite css classes modifier to a filter.
- - Update readme and add changelog. 
+ - Update readme and add changelog.

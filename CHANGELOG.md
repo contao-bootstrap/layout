@@ -5,6 +5,11 @@ Changelog
 Unreleased
 ----------
 
+2.1.0 (2022-04-20)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.0.4...2.1.0)
+
 ### Added
 
  - Add support for `icons.css` of the Contao css framework

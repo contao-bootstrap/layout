@@ -5,6 +5,17 @@ Changelog
 Unreleased
 ----------
 
+
+2.1.1 (2022-04-21)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.1.0...2.1.1)
+
+### Fixed
+
+ - Fix version constraint of dependency ([#20](https://github.com/contao-bootstrap/layout/pull/20))
+
+
 2.1.0 (2022-04-20)
 ------------------
 

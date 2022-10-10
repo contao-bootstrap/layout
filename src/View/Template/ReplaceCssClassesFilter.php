@@ -20,7 +20,7 @@ final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function filter(string $buffer, string $templateName): string
     {
-        $cssClasses = $this->getEnvironment()->getConfig()->get('layout.replace_css_classes');
+        $cssClasses = $this->getEnvironment()->getConfig()->get(['layout', 'replace_css_classes']);
         if (! is_array($cssClasses)) {
             return $buffer;
         }
@@ -32,9 +32,8 @@ final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
             array_keys($cssClasses)
         );
 
-        $search = sprintf('~class="([^"]*(%s)[^"]*)"~', implode('|', $classes));
-        $buffer = preg_replace_callback(
-            $search,
+        return preg_replace_callback(
+            sprintf('~class="([^"]*(%s)[^"]*)"~', implode('|', $classes)),
             static function ($matches) use ($cssClasses) {
                 $classes = explode(' ', $matches[1]);
                 $classes = array_filter($classes);
@@ -51,7 +50,5 @@ final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
             },
             $buffer
         );
-
-        return $buffer;
     }
 }

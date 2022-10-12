@@ -3,7 +3,7 @@ services:
     class: ContaoBootstrap\Layout\View\Template\ReplaceCssClassesFilter
     arguments:
       - '@contao_bootstrap.environment'
-      - 'layout.filters.replace_css_classes_templates'
+      - ['layout', 'filters', 'replace_css_classes_templates']
     tags:
       - { name: contao_bootstrap.post_render_filter }
 
@@ -11,7 +11,7 @@ services:
     class: ContaoBootstrap\Layout\View\Template\ReplaceImageClassesFilter
     arguments:
       - '@contao_bootstrap.environment'
-      - "layout.filters.replace_images_classes_templates"
+      - ['layout', 'filters', 'replace_images_classes_templates']
     tags:
       - { name: contao_bootstrap.pre_render_filter }
 
@@ -19,7 +19,7 @@ services:
     class: ContaoBootstrap\Layout\View\Template\ReplaceTableClassesFilter
     arguments:
       - '@contao_bootstrap.environment'
-      - "layout.filters.replace_table_classes_templates"
+      - ['layout', 'filters', 'replace_table_classes_templates']
     tags:
       - { name: contao_bootstrap.pre_render_filter }
 

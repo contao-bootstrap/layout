@@ -12,17 +12,8 @@ use function strpos;
 
 final class PageTemplateListener
 {
-    /**
-     * Bootstrap environment.
-     */
-    private Environment $environment;
-
-    /**
-     * @param Environment $environment Bootstrap environment.
-     */
-    public function __construct(Environment $environment)
+    public function __construct(private readonly Environment $environment)
     {
-        $this->environment = $environment;
     }
 
     /**

@@ -36,7 +36,7 @@ abstract class AbstractFilter
      */
     protected function isTemplateNameSupported(string $templateName): bool
     {
-        $templateNames = $this->getEnvironment()->config->get($this->templateConfigKey);
+        $templateNames = $this->getEnvironment()->getConfig()->get($this->templateConfigKey);
 
         if (! is_array($templateNames)) {
             return false;

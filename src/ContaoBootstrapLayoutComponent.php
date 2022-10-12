@@ -14,7 +14,7 @@ class ContaoBootstrapLayoutComponent implements ContaoBootstrapComponent
     {
         try {
             $layout = $builder->find('layout');
-        } catch (RuntimeException $exception) {
+        } catch (RuntimeException) {
             $layout = $builder->children()->arrayNode('layout');
         }
 

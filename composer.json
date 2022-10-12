@@ -41,7 +41,7 @@
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
-    "doctrine/coding-standard": "^9.0.",
+    "doctrine/coding-standard": "^10.0.",
     "netzmacht/phpspec-phpcq-plugin": "*@dev",
     "phpcq/coding-standard": "^2.1.2",
     "phpcq/plugin-api": "1.x-dev",
@@ -51,6 +51,14 @@
   "conflict": {
     "netzmacht/contao-bootstrap": "*"
   },
+  "repositories": {
+    "contao-bootstrap-core": {
+      "type": "vcs",
+      "url": "https://git.netzmacht.de/contao-bootstrap/core.git"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "ContaoBootstrap\\Layout\\": "src/"
@@ -71,9 +79,9 @@
   },
   "extra": {
     "branch-alias": {
+      "dev-bootstrap5": "3.0.x-dev",
       "dev-develop": "2.2.x-dev",
-      "dev-master": "2.1.x-dev",
-      "dev-bootstrap5": "3.0.x-dev"
+      "dev-master": "2.1.x-dev"
     },
     "contao": {
       "transifex": {

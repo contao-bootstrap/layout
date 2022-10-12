@@ -29,7 +29,7 @@ final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
             static function ($class) {
                 return preg_quote($class, '~');
             },
-            array_keys($cssClasses)
+            array_keys($cssClasses),
         );
 
         return preg_replace_callback(
@@ -48,7 +48,7 @@ final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
 
                 return sprintf('class="%s"', implode(' ', $classes));
             },
-            $buffer
+            $buffer,
         );
     }
 }

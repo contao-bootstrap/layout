@@ -30,7 +30,7 @@ final class LayoutDcaListener extends AbstractListener
     public function __construct(
         private readonly Config $config,
         private readonly Connection $connection,
-        DcaManager $dcaManager
+        DcaManager $dcaManager,
     ) {
         parent::__construct($dcaManager);
     }
@@ -44,7 +44,7 @@ final class LayoutDcaListener extends AbstractListener
     {
         $this->getDefinition()->set(
             ['fields', 'viewport', 'default'],
-            $this->config->get(['layout', 'viewport'], '')
+            $this->config->get(['layout', 'viewport'], ''),
         );
     }
 
@@ -69,8 +69,8 @@ final class LayoutDcaListener extends AbstractListener
         $dataContainer->activeRecord->framework = array_values(
             array_filter(
                 StringUtil::deserialize($dataContainer->activeRecord->framework, true),
-                static fn(string $value) => $supportedFrameworkCss[$value] ?? true,
-            )
+                static fn (string $value) => $supportedFrameworkCss[$value] ?? true,
+            ),
         );
 
         $this->connection->executeStatement(
@@ -78,13 +78,11 @@ final class LayoutDcaListener extends AbstractListener
             [
                 'framework' => serialize($dataContainer->activeRecord->framework),
                 'id'        => $dataContainer->id,
-            ]
+            ],
         );
     }
 
-    /**
-     * @Callback(table="tl_layout", target="fields.framework.load")
-     */
+    /** @Callback(table="tl_layout", target="fields.framework.load") */
     public function frameworkOptions(string $value, DataContainer $dataContainer): string
     {
         if (! $dataContainer->activeRecord || $dataContainer->activeRecord->layoutType !== 'bootstrap') {

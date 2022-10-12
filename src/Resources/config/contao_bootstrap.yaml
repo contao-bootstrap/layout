@@ -45,9 +45,10 @@ layout:
         - bs_rightClass
 
   replace_css_classes:
-      invisible: sr-only
+      invisible: visually-hidden
       float_left: float-left
       float_right: float-right
+      caption: figure-caption
 
   filters:
     replace_css_classes_templates:

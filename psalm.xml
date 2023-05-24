@@ -22,8 +22,14 @@
                 <referencedProperty name="Contao\LayoutModel::$bs_rightClass"/>
                 <referencedProperty name="Contao\LayoutModel::$bs_containerElement"/>
                 <referencedProperty name="Contao\LayoutModel::$layoutType"/>
+                <referencedProperty name="Contao\DataContainer::$activeRecord"/>
             </errorLevel>
         </UndefinedMagicPropertyFetch>
+        <DeprecatedClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Contao\Template"/>
+            </errorLevel>
+        </DeprecatedClass>
     </issueHandlers>
 
     <universalObjectCrates>

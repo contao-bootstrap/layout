@@ -32,7 +32,7 @@ class ContaoBootstrapLayoutComponent implements ContaoBootstrapComponent
                     ->scalarPrototype()->end()
                 ->end()
                 ->arrayNode('filters')
-                    ->info('Output filte configuration')
+                    ->info('Output filter configuration')
                     ->children()
                         ->arrayNode('replace_css_classes_templates')
                             ->scalarPrototype()->end()

@@ -45,8 +45,8 @@ contao_bootstrap:
 
       replace_css_classes:
         invisible: visually-hidden
-        float_left: float-left
-        float_right: float-right
+        float_left: float-start
+        float_right: float-end
         caption: figure-caption
 
       filters:

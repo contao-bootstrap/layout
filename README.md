@@ -42,10 +42,10 @@ Contao Manager and install it. Alternatively you can use the CLI.
 
 ```bash
 # Using the contao manager
-$ php contao-manager.phar.php composer require contao-bootstrap/layout~2.0@beta
+$ php contao-manager.phar.php composer require contao-bootstrap/layout ^3.0
 
 # Using composer directly
-$ php composer.phar require contao-bootstrap/layout~2.0@beta
+$ php composer.phar require contao-bootstrap/layout ^3.0
 ```
 
 ### Symfony application
@@ -64,7 +64,7 @@ class AppKernel
             new \ContaoCommunityAlliance\MetaPalettes\CcaMetaPalettesBundle(),
             new \Netzmacht\Contao\Toolkit\Bundle\NetzmachtContaoToolkitBundle(),
             new \ContaoBootstrap\Core\ContaoBootstrapCoreBundle(),
-            new ContaoBootstrap\Layout\ContaoBootstrapLayoutBundle(),
+            new \ContaoBootstrap\Layout\ContaoBootstrapLayoutBundle(),
         ];
     }
 }

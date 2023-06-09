@@ -15,7 +15,7 @@ job_test_ci:
   except:
     - tags
   variables:
-    COMPOSER_AUTH: '{"http-basic":{"$CI_SERVER_HOST":{"username": "gitlab-ci-token", "password": "$CI_JOB_TOKEN"}}'
+    COMPOSER_AUTH: '{"http-basic":{"$CI_SERVER_HOST":{"username":"gitlab-ci-token","password":"$CI_JOB_TOKEN"}}}'
   before_script:
     - composer self-update -vvv && composer --version
     - composer install --prefer-dist --no-interaction --no-progress --no-scripts

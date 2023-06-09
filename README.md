@@ -4,7 +4,7 @@ Contao-Bootstrap Layout
 [![Version](http://img.shields.io/packagist/v/contao-bootstrap/layout.svg?style=for-the-badge&label=Latest)](http://packagist.org/packages/contao-bootstrap/layout)
 [![GitHub issues](https://img.shields.io/github/issues/contao-bootstrap/layout.svg?style=for-the-badge&logo=github)](https://github.com/contao-bootstrap/layout/issues)
 [![License](http://img.shields.io/packagist/l/contao-bootstrap/layout.svg?style=for-the-badge&label=License)](http://packagist.org/packages/contao-bootstrap/layout)
-[![Build Status](https://img.shields.io/github/workflow/status/contao-bootstrap/layout/Code%20Quality%20Diagnostics/master?style=for-the-badge)](https://github.com/contao-bootstrap/layout/actions/workflows/diagnostics.yml)
+[![Build Status](https://img.shields.io/github/workflow/status/contao-bootstrap/layout/contao-bootstrap-layout/master?style=for-the-badge)](https://github.com/contao-bootstrap/layout/actions/workflows/diagnostics.yml)
 [![Downloads](http://img.shields.io/packagist/dt/contao-bootstrap/layout.svg?style=for-the-badge&label=Downloads)](http://packagist.org/packages/contao-bootstrap/layout)
 
 This extension provides Bootstrap integration into Contao.
@@ -27,8 +27,9 @@ See [changelog](CHANGELOG.md)
 Requirements
 ------------
 
- - PHP 7.1
- - Contao ~4.4
+- PHP ^8.1
+- Contao ^4.13 || ^5.0
+
 
 
 Install
@@ -60,9 +61,9 @@ class AppKernel
     {
         $bundles = [
             // ...
-            new Contao\CoreBundle\HttpKernel\Bundle\ContaoModuleBundle('metapalettes', $this->getRootDir()),
-            new ContaoBootstrap\Core\ContaoBootstrapCoreBundle(),
-            new Netzmacht\Html\NetzmachtHtmlBundle(),
+            new \ContaoCommunityAlliance\MetaPalettes\CcaMetaPalettesBundle(),
+            new \Netzmacht\Contao\Toolkit\Bundle\NetzmachtContaoToolkitBundle(),
+            new \ContaoBootstrap\Core\ContaoBootstrapCoreBundle(),
             new ContaoBootstrap\Layout\ContaoBootstrapLayoutBundle(),
         ];
     }

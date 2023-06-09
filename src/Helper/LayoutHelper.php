@@ -110,10 +110,10 @@ final class LayoutHelper
             if ($class && $this->layout->bs_containerElement === $sectionId) {
                 $attributes->addClass($class);
             }
-        } elseif (static::isGridActive()) {
+        } elseif ($this->isGridActive()) {
             $key = sprintf('%sClass', $sectionId);
 
-            if ($this->$key) {
+            if (! empty($this->$key)) {
                 $attributes->addClass($this->$key);
             }
         }

@@ -5,6 +5,15 @@ Changelog
 Unreleased
 ----------
 
+2.1.2 (2022-11-21)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.1.1...2.1.2)
+
+### Fixed
+
+ - Prevent possible PHP 8 warning
+
 
 2.1.1 (2022-04-21)
 ------------------

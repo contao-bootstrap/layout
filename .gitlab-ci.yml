@@ -8,6 +8,7 @@ stages:
 
 before_script:
   - echo "ipv6" >> /etc/modules
+  - composer config gitlab-token.{servername} $CI_JOB_TOKEN
 
 job_test_ci:
   image: discordier/php-runner:8.1-alpine

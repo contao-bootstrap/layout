@@ -8,13 +8,17 @@ stages:
 
 before_script:
   - echo "ipv6" >> /etc/modules
-  - composer config gitlab-token.{servername} $CI_JOB_TOKEN
 
 job_test_ci:
   image: discordier/php-runner:8.1-alpine
   stage: pre-test
   except:
     - tags
+  variables:
+    COMPOSER_AUTH_TOKEN: "$CI_JOB_TOKEN"
+    COMPOSER_AUTH_USER: job-token
+    COMPOSER_AUTH_HOST: "$CI_SERVER_HOST"
+    COMPOSER_AUTH: '{"gitlab-oauth":{"$CI_SERVER_HOST":"$CI_JOB_TOKEN"}}'
   before_script:
     - composer self-update -vvv && composer --version
     - composer install --prefer-dist --no-interaction --no-progress --no-scripts

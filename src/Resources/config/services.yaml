@@ -30,3 +30,8 @@ services:
       - '@contao_bootstrap.config'
       - '@database_connection'
       - '@netzmacht.contao_toolkit.dca.manager'
+
+  contao_bootstrap.layout.view.twig_extension:
+    class: ContaoBootstrap\Layout\View\Twig\TwigExtension
+    tags:
+      - {name: 'twig.extension'}

@@ -104,4 +104,3 @@ final class TwigExtension extends AbstractExtension
         return array_values(array_unique($imgClasses));
     }
 }
-

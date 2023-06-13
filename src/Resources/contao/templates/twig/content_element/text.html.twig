@@ -1,4 +1,4 @@
 {% extends "@Contao/content_element/text.html.twig" %}
 {% if contao_bootstrap_enabled() and image %}
-  {% set img_attributes = attrs(figure_attributes|default).addClass(contao_bootstrap_extract_img_classes()) %}
+  {% set img_attributes = attrs(img_attributes|default).addClass(contao_bootstrap_extract_img_classes()) %}
 {% endif %}

@@ -1,0 +1,8 @@
+{% extends "@Contao/content_element/table.html.twig" %}
+{% if contao_bootstrap_enabled() %}
+  {% set table_attributes = attrs(table_attributes|default).addClass('table').addClass(contao_bootstrap_extract_table_classes()) %}
+  {% if 'table-group-divider' in table_attributes.class %}
+    {% set table_attributes = table_attributes.removeClass('table-group-divider') %}
+    {% set table_body_attributes = attrs(table_body_attributes|default).addClass('table-group-divider') %}
+  {% endif %}
+{% endif %}

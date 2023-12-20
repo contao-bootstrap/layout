@@ -109,7 +109,6 @@ final class TwigExtension extends AbstractExtension
         return array_values(array_unique($imgClasses));
     }
 
-
     /**
      * @param array<string,mixed> $context
      *

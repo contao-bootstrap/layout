@@ -19,9 +19,7 @@ use function serialize;
 
 final class LayoutDcaListener extends AbstractListener
 {
-    /** @var string */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-    protected static $name = 'tl_layout';
+    protected static string $name = 'tl_layout';
 
     /**
      * @param Config     $config     Bootstrap config.

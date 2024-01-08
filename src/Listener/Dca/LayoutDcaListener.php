@@ -19,8 +19,6 @@ use function serialize;
 
 final class LayoutDcaListener extends AbstractListener
 {
-    protected static string $name = 'tl_layout';
-
     /**
      * @param Config     $config     Bootstrap config.
      * @param Connection $connection Database connection.
@@ -31,6 +29,11 @@ final class LayoutDcaListener extends AbstractListener
         DcaManager $dcaManager,
     ) {
         parent::__construct($dcaManager);
+    }
+
+    public function getName(): string
+    {
+        return 'tl_layout';
     }
 
     /**

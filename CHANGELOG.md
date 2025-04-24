@@ -5,6 +5,34 @@ Changelog
 Unreleased
 ----------
 
+3.0.0 (2023-06-09)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.1.2...3.0.0)
+
+### Added
+
+ - Add `block_section_container_fluid` template
+
+### Changed
+
+ - Use bootstrap 5 classes for replace classes feature
+
+### Breaking
+
+ - Remove `block_sction_jumbotron*` templates
+ - Remove `fe_bootstrap_no_schema` template
+
+
+2.1.2 (2022-11-21)
+------------------
+
+[Full Changelog](https://github.com/contao-bootstrap/layout/compare/2.1.1...2.1.2)
+
+### Fixed
+
+ - Prevent possible PHP 8 warning
+
 
 2.1.1 (2022-04-21)
 ------------------

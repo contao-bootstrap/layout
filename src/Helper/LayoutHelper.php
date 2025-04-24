@@ -25,11 +25,6 @@ final class LayoutHelper
     public const CONTAINER = 'container';
 
     /**
-     * Frontend page template.
-     */
-    private FrontendTemplate $template;
-
-    /**
      * Main css class.
      */
     private string $mainClass = '';
@@ -60,10 +55,9 @@ final class LayoutHelper
      * @param FrontendTemplate $template   Frontend page template.
      * @param LayoutModel      $pageLayout Layout model.
      */
-    protected function __construct(FrontendTemplate $template, LayoutModel $pageLayout)
+    protected function __construct(private readonly FrontendTemplate $template, LayoutModel $pageLayout)
     {
-        $this->template = $template;
-        $this->layout   = $pageLayout;
+        $this->layout = $pageLayout;
 
         $this->initialize();
     }
@@ -77,7 +71,7 @@ final class LayoutHelper
      */
     public static function forTemplate(FrontendTemplate $template): self
     {
-        return new self($template, $template->bootstrapEnvironment->getLayout());
+        return new self($template, $template->bootstrapEnvironment->layout);
     }
 
     /**
@@ -116,10 +110,10 @@ final class LayoutHelper
             if ($class && $this->layout->bs_containerElement === $sectionId) {
                 $attributes->addClass($class);
             }
-        } elseif (static::isGridActive()) {
+        } elseif ($this->isGridActive()) {
             $key = sprintf('%sClass', $sectionId);
 
-            if ($this->$key) {
+            if (! empty($this->$key)) {
                 $attributes->addClass($this->$key);
             }
         }

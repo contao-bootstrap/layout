@@ -1,60 +1,60 @@
-layout:
-  # default viewport value, can be changed in layout
-  viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
+contao_bootstrap:
+  config:
+    layout:
+      contao_framework_css:
+        layout.css: false
+        responsive.css: false
+        grid.css: false
+        reset.css: false
+        form.css: false
+        icons.css: true
 
-  contao_framework_css:
-    layout.css: false
-    responsive.css: false
-    grid.css: false
-    reset.css: false
-    form.css: false
-    icons.css: true
+      metapalette:
+        "-static":
+          - static
 
-  metapalette:
-    "-static":
-      - static
+        "container after column":
+          - bs_containerElement
 
-    "container after column":
-      - bs_containerElement
+      metasubselectpalettes:
+        rows:
+          2rwh:
+            - bs_headerClass
 
-  metasubselectpalettes:
-    rows:
-      2rwh:
-        - bs_headerClass
+          2rwf:
+            - bs_footerClass
 
-      2rwf:
-        - bs_footerClass
+          3rw:
+            - bs_headerClass
+            - bs_footerClass
 
-      3rw:
-        - bs_headerClass
-        - bs_footerClass
+        cols:
+          1cl: [ ]
+          2cll:
+            - bs_leftClass
+            - bs_mainClass
 
-    cols:
-      1cl: []
-      2cll:
-        - bs_leftClass
-        - bs_mainClass
+          2clr:
+            - bs_mainClass
+            - bs_rightClass
 
-      2clr:
-        - bs_mainClass
-        - bs_rightClass
+          3cl:
+            - bs_leftClass
+            - bs_mainClass
+            - bs_rightClass
 
-      3cl:
-        - bs_leftClass
-        - bs_mainClass
-        - bs_rightClass
+      replace_css_classes:
+        invisible: visually-hidden
+        float_left: float-start
+        float_right: float-end
+        caption: figure-caption
 
-  replace_css_classes:
-      invisible: sr-only
-      float_left: float-left
-      float_right: float-right
+      filters:
+        replace_css_classes_templates:
+          - 'fe_*'
 
-  filters:
-    replace_css_classes_templates:
-      - 'fe_*'
+        replace_images_classes_templates:
+          - 'ce_*'
 
-    replace_images_classes_templates:
-      - 'ce_*'
-
-    replace_table_classes_templates:
-      - 'ce_table*'
+        replace_table_classes_templates:
+          - 'ce_table*'

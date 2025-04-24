@@ -1,6 +1,0 @@
-
-<div class="jumbotron">
-  <div class="container">
-    <?php echo $this->content; ?>
-  </div>
-</div>

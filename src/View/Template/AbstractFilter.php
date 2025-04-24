@@ -14,23 +14,11 @@ use function substr;
 abstract class AbstractFilter
 {
     /**
-     * Bootstrap environment.
+     * @param Environment  $environment       The bootstrap environment.
+     * @param list<string> $templateConfigKey The templates config key.
      */
-    private Environment $environment;
-
-    /**
-     * The config key for the templates.
-     */
-    private string $templateConfigKey;
-
-    /**
-     * @param Environment $environment       The bootstrap environment.
-     * @param string      $templateConfigKey The templates config key.
-     */
-    public function __construct(Environment $environment, string $templateConfigKey)
+    public function __construct(private readonly Environment $environment, private readonly array $templateConfigKey)
     {
-        $this->environment       = $environment;
-        $this->templateConfigKey = $templateConfigKey;
     }
 
     /**

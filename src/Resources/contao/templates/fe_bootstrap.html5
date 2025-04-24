@@ -27,7 +27,7 @@
   <?php $this->endblock(); ?>
 
 </head>
-<body id="top"<?php if ($this->class): ?> class="<?= $this->class ?>"<?php endif ?><?php if ($this->onload): ?> onload="<?= $this->onload ?>"<?php endif ?> itemscope itemtype="http://schema.org/WebPage">
+<body id="top"<?php if ($this->class): ?> class="<?= $this->class ?>"<?php endif ?><?php if ($this->onload): ?> onload="<?= $this->onload ?>"<?php endif ?>>
 
   <?php $this->block('body'); ?>
     <?php $this->sections('top'); ?>
@@ -36,7 +36,7 @@
 
       <?php $this->block('header'); ?>
         <?php if ($this->header): ?>
-          <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+          <header id="header">
             <div <?= $helper->getAttributes($helper::HEADER, true) ?>>
               <?= $this->header ?>
             </div>
@@ -87,7 +87,7 @@
 
       <?php $this->block('footer'); ?>
         <?php if ($this->footer): ?>
-          <footer id="footer" itemscope itemtype="http://schema.org/WPFooter">
+          <footer id="footer">
             <div <?php echo $helper->getAttributes($helper::FOOTER, true); ?>>
               <?= $this->footer ?>
             </div>

@@ -6,14 +6,16 @@ namespace ContaoBootstrap\Layout\View\Template;
 
 use Contao\StringUtil;
 use Contao\Template;
+use Override;
 
 use function count;
 use function implode;
 use function substr;
 use function trim;
 
-class ReplaceImageClassesFilter extends AbstractPreRenderFilter
+final class ReplaceImageClassesFilter extends AbstractPreRenderFilter
 {
+    #[Override]
     public function filter(Template $template): void
     {
         if (empty($template->imgSize) && empty($template->picture['img'])) {

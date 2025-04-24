@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ContaoBootstrap\Layout\View\Twig;
 
 use Contao\StringUtil;
+use Override;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -19,6 +20,7 @@ use function str_starts_with;
 final class TwigExtension extends AbstractExtension
 {
     /** {@inheritDoc} */
+    #[Override]
     public function getFunctions(): array
     {
         return [

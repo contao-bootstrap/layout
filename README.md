@@ -28,7 +28,7 @@ Requirements
 ------------
 
 - PHP ^8.1
-- Contao ^4.13 || ^5.0
+- Contao ^4.13 || ^5.3
 
 
 

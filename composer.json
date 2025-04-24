@@ -31,7 +31,7 @@
   "require": {
     "php": "^8.1",
     "contao-bootstrap/core": "^3.0",
-    "contao/core-bundle": "^4.13 || ^5.0",
+    "contao/core-bundle": "^4.13 || ^5.3",
     "doctrine/dbal": "^3.3",
     "netzmacht/contao-toolkit": "^3.9 || ^4.0",
     "netzmacht/html": "^2.0.2 || ^3.0",
@@ -50,12 +50,6 @@
   },
   "conflict": {
     "netzmacht/contao-bootstrap": "*"
-  },
-  "repositories": {
-    "contao-bootstrap-core": {
-      "type": "vcs",
-      "url": "https://git.netzmacht.de/contao-bootstrap/core.git"
-    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -80,9 +74,9 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-bootstrap5": "3.0.x-dev",
-      "dev-develop": "2.2.x-dev",
-      "dev-master": "2.1.x-dev"
+      "dev-develop": "3.1.x-dev",
+      "dev-master": "3.0.x-dev",
+      "dev-support/2.x": "2.x-dev"
     },
     "contao-manager-plugin": "ContaoBootstrap\\Layout\\ContaoManager\\Plugin"
   }

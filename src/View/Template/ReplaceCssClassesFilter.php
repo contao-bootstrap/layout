@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\View\Template;
 
+use Override;
+
 use function array_filter;
 use function array_key_exists;
 use function array_keys;
@@ -18,6 +20,7 @@ use function sprintf;
 final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
 {
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+    #[Override]
     public function filter(string $buffer, string $templateName): string
     {
         $cssClasses = $this->getEnvironment()->getConfig()->get(['layout', 'replace_css_classes']);
@@ -32,7 +35,7 @@ final class ReplaceCssClassesFilter extends AbstractPostRenderFilter
             array_keys($cssClasses),
         );
 
-        return preg_replace_callback(
+        return (string) preg_replace_callback(
             sprintf('~class="([^"]*(%s)[^"]*)"~', implode('|', $classes)),
             static function ($matches) use ($cssClasses) {
                 $classes = explode(' ', $matches[1]);

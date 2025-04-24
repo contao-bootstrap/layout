@@ -6,6 +6,7 @@ namespace ContaoBootstrap\Layout\View\Template;
 
 use Contao\StringUtil;
 use Contao\Template;
+use Override;
 
 use function count;
 use function implode;
@@ -13,8 +14,9 @@ use function in_array;
 use function sprintf;
 use function substr;
 
-class ReplaceTableClassesFilter extends AbstractPreRenderFilter
+final class ReplaceTableClassesFilter extends AbstractPreRenderFilter
 {
+    #[Override]
     public function filter(Template $template): void
     {
         $cssClasses   = $template->class;

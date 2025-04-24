@@ -11,6 +11,7 @@ use ContaoBootstrap\Core\Config;
 use Doctrine\DBAL\Connection;
 use Netzmacht\Contao\Toolkit\Dca\DcaManager;
 use Netzmacht\Contao\Toolkit\Dca\Listener\AbstractListener;
+use Override;
 
 use function array_filter;
 use function array_keys;
@@ -31,6 +32,7 @@ final class LayoutDcaListener extends AbstractListener
         parent::__construct($dcaManager);
     }
 
+    #[Override]
     public static function getName(): string
     {
         return 'tl_layout';

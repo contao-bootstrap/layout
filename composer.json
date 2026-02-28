@@ -35,9 +35,9 @@
     "doctrine/dbal": "^3.3",
     "netzmacht/contao-toolkit": "^3.9 || ^4.0",
     "netzmacht/html": "^2.0.2 || ^3.0",
-    "symfony/config": "^5.4 || ^6.0",
-    "symfony/dependency-injection": "^5.4 || ^6.0",
-    "symfony/http-kernel": "^5.4 || ^6.0",
+    "symfony/config": "^5.4 || ^6.0 || ^7.0",
+    "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
+    "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0",
     "twig/twig": "^3.1"
   },
   "require-dev": {

@@ -1,5 +1,16 @@
 services:
+  _defaults:
+    autconfigure: true
+
   ContaoBootstrap\Layout\Listener\Hook\PageTemplateListener:
     public: true
     arguments:
       - '@contao_bootstrap.environment'
+
+  contao_bootstrap.layout.listener.layout_dca:
+    class: ContaoBootstrap\Layout\Listener\Dca\LayoutDcaListener
+    public: true
+    arguments:
+      - '@contao_bootstrap.config'
+      - '@database_connection'
+      - '@netzmacht.contao_toolkit.dca.manager'

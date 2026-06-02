@@ -23,14 +23,6 @@ services:
     tags:
       - { name: contao_bootstrap.pre_render_filter }
 
-  contao_bootstrap.layout.listener.layout_dca:
-    class: ContaoBootstrap\Layout\Listener\Dca\LayoutDcaListener
-    public: true
-    arguments:
-      - '@contao_bootstrap.config'
-      - '@database_connection'
-      - '@netzmacht.contao_toolkit.dca.manager'
-
   contao_bootstrap.layout.view.twig_extension:
     class: ContaoBootstrap\Layout\View\Twig\TwigExtension
     tags:

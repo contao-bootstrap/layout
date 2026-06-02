@@ -66,13 +66,13 @@ final class LayoutDcaListener extends AbstractListener
             return;
         }
 
-        /** @psalm-var array<string,bool> $supportedFrameworkCss */
-        $supportedFrameworkCss = $this->config->get(['layout', 'contao_framework_css'], []);
+        /** @psalm-var array<string,bool> $frameworks */
+        $frameworks = $this->config->get(['layout', 'contao_framework_css'], []);
 
         $dataContainer->activeRecord->framework = array_values(
             array_filter(
                 StringUtil::deserialize($dataContainer->activeRecord->framework, true),
-                static fn (string $value) => $supportedFrameworkCss[$value] ?? true,
+                static fn (string $value) => $frameworks[$value] ?? true,
             ),
         );
 
@@ -92,9 +92,9 @@ final class LayoutDcaListener extends AbstractListener
             return $value;
         }
 
-        /** @psalm-var array<string,bool> $supportedFrameworkCss */
-        $supportedFrameworkCss = $this->config->get(['layout', 'contao_framework_css'], []);
-        $files                 = array_keys(array_filter($supportedFrameworkCss));
+        /** @psalm-var array<string,bool> $frameworks */
+        $frameworks = $this->config->get(['layout', 'contao_framework_css'], []);
+        $files      = array_keys(array_filter($frameworks));
 
         $this->getDefinition()->set(['fields', 'framework', 'options'], $files);
 

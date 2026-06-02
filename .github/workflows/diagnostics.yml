@@ -78,7 +78,7 @@ jobs:
 
       - name: PHP ${{ matrix.php }} Upload build directory to artifact
         uses: actions/upload-artifact@v7
-        if: ${{ success() }} || ${{ failure() }}
+        if: ${{ success() || failure() }}
         with:
           name: phpcq-builds-php-${{ matrix.php }}
           path: .phpcq/build/

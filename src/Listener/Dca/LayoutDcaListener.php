@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ContaoBootstrap\Layout\Listener\Dca;
 
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\StringUtil;
 use ContaoBootstrap\Core\Config;
@@ -38,11 +38,7 @@ final class LayoutDcaListener extends AbstractListener
         return 'tl_layout';
     }
 
-    /**
-     * Set the default viewport.
-     *
-     * @Callback(table="tl_layout", target="config.onload")
-     */
+    #[AsCallback(table: 'tl_layout', target: 'config.onload')]
     public function setDefaultViewPort(): void
     {
         $this->getDefinition()->set(
@@ -51,11 +47,7 @@ final class LayoutDcaListener extends AbstractListener
         );
     }
 
-    /**
-     * Disable contao framework.
-     *
-     * @Callback(table="tl_layout", target="config.onsubmit")
-     */
+    #[AsCallback(table: 'tl_layout', target: 'config.onsubmit')]
     public function disableFramework(DataContainer $dataContainer): void
     {
         if (! $dataContainer->activeRecord) {
@@ -85,7 +77,7 @@ final class LayoutDcaListener extends AbstractListener
         );
     }
 
-    /** @Callback(table="tl_layout", target="fields.framework.load") */
+    #[AsCallback(table: 'tl_layout', target: 'fields.framework.load')]
     public function frameworkOptions(string $value, DataContainer $dataContainer): string
     {
         if (! $dataContainer->activeRecord || $dataContainer->activeRecord->layoutType !== 'bootstrap') {

@@ -5,6 +5,12 @@ Changelog
 Unreleased
 ----------
 
+3.0.2 (2026-06-02)
+------------------
+
+ - Add support for Contao 5.7
+ - Increase minimum Contao requirements to 5.3
+
 3.0.0 (2023-06-09)
 ------------------
 

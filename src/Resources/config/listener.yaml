@@ -1,6 +1,6 @@
 services:
   _defaults:
-    autconfigure: true
+    autoconfigure: true
 
   ContaoBootstrap\Layout\Listener\Hook\PageTemplateListener:
     public: true

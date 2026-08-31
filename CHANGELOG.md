@@ -2,8 +2,10 @@
 Changelog
 =========
 
-Unreleased
-----------
+3.0.3 (2026-08-31)
+------------------
+
+ - Fix typo in service configuration that prevented autoconfiguration of the hook and DCA listeners ([#36](https://github.com/contao-bootstrap/layout/pull/36))
 
 3.0.2 (2026-06-02)
 ------------------
